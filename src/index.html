@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--=============== BOXICONS ===============-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        
+        
+        <title>シフトボード収支管理アプリ</title>
+    </head>
+    <body>
+        <!--=============== HEADER ===============-->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="#" class="nav__logo">シフトボード収支管理アプリ</a>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <button onclick="screenChange(ScreenList.shiftCalender)" class="nav__link">
+                                <span class="material-symbols-outlined">
+                                    calendar_month
+                                </span>
+                                <span class="nav__name">シフト管理</span>
+                            </button>
+                        </li>
+
+                        <li class="nav__item">
+                            <button onclick="screenChange(ScreenList.balanceObPayment)" class="nav__link">
+                                <span class="material-symbols-outlined">
+                                    savings
+                                </span>
+                                <span class="nav__name">収支管理</span>
+                            </button>
+                        </li>
+
+                        <li class="nav__item">
+                            <button onclick="screenChange(ScreenList.income)" class="nav__link">
+                                <span class="material-symbols-outlined">
+                                    shopping_cart
+                                </span>
+                                <span class="nav__name">支出管理</span>
+                            </button>
+                        </li>
+
+                        <li class="nav__item">
+                            <button onclick="screenChange(ScreenList.jobSetting)" class="nav__link">
+                                <span class="material-symbols-outlined">
+                                    settings
+                                </span>
+                                <span class="nav__name">バイト先設定</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <!--=============== ABOUT ===============-->
+            <iframe 
+                src="./features/shiftCalender/shiftCalenderScreen.html" 
+                frameborder="0" 
+                class="container section section__height" 
+                id="screen_iframe_id">
+            </iframe>
+        </main>
+        
+
+        <!--=============== MAIN JS ===============-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
