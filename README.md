@@ -1,1 +1,1 @@
-# income-and-expenditure-app
+# outgo-and-expenditure-app
