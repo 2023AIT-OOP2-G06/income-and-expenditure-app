@@ -24,7 +24,8 @@ body {
   }
   
   .bar-graph-horizontal {
-    max-width: 100%;
+    max-width: 100%;    
+
   }
   
   .bar-graph-horizontal > div {
@@ -72,6 +73,8 @@ body {
       width: 0;
     }
     100% {
-      width: 69.6%;
+      width: var(--my-calculated-value,0%);
     }
   }
+
+
