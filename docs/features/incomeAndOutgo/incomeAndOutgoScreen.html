@@ -23,11 +23,42 @@
       href="../../features/incomeAndOutgo/css/incomeAndOutgoStayle.css"
     />
 
+    <style>
+      /* 追加スタイル */
+      .month-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+    </style>
+
     <title>収支管理</title>
   </head>
   <body class="d-flex align-items-center justify-content-center">
     <div class="container text-center">
-      <h2 class="section__title">収支管理</h2>
+      <!-- ボタンで月を変える -->
+      <div class="month-buttons">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          onclick="changeMonth('previous')"
+        >
+          先月
+        </button>
+        <h2 class="section__title">収支管理</h2>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          onclick="changeMonth('current')"
+        >
+          来月
+        </button>
+      </div>
+
+      <!-- 年月日を表示 -->
+      <h5 class="mt-4 mb-4"><span id="currentDate"></span></h5>
+
       <!-- 扶養の金額 -->
       <div class="mt-4">
         <h4 class="mb-3">扶養の金額</h4>
@@ -62,7 +93,7 @@
       </div>
     </div>
 
-    <!--=============== BootstrapのJS ===============-->
+    <!-- BootstrapのJSを読み込み -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
@@ -70,5 +101,13 @@
     ></script>
     <!-- JavaScriptファイルのリンク -->
     <script src="../../features/incomeAndOutgo/js/incomeAndOutgoMain.js"></script>
+
+    <script>
+      // ページ読み込み時に初期化
+      window.onload = function () {
+        updateCurrentDate();
+        updateData(); // データを初期表示
+      };
+    </script>
   </body>
 </html>
