@@ -61,6 +61,40 @@ document.addEventListener("DOMContentLoaded", function () {
       selectYear.value = year;
       selectMonth.value = month;
 
+      shiftData = [
+        {date: 1, shift: ""},
+        {date: 2, shift: "8h"},
+        {date: 3, shift: ""},
+        {date: 4, shift: "8h"},
+        {date: 5, shift: "8h"},
+        {date: 6, shift: "8h"},
+        {date: 7, shift: "8h"},
+        {date: 8, shift: ""},
+        {date: 9, shift: "8h"},
+        {date: 10, shift: "8h"},
+        {date: 11, shift: "8h"},
+        {date: 12, shift: ""},
+        {date: 13, shift: "8h"},
+        {date: 14, shift: "8h"},
+        {date: 15, shift: "8h"},
+        {date: 16, shift: "8h"},
+        {date: 17, shift: ""},
+        {date: 18, shift: "8h"},
+        {date: 19, shift: "8h"},
+        {date: 20, shift: "4h"},
+        {date: 21, shift: "8h"},
+        {date: 22, shift: "8h"},
+        {date: 23, shift: ""},
+        {date: 24, shift: "8h"},
+        {date: 25, shift: ""},
+        {date: 26, shift: "8h"},
+        {date: 27, shift: "8h"},
+        {date: 28, shift: ""},
+        {date: 29, shift: "8h"},
+        {date: 30, shift: "8h"},
+        {date: 31, shift: "8h"},
+      ]
+
       var date = 1;
       for (var i = 0; i < 6; i++) {
           var row = document.createElement("tr");
