@@ -47,14 +47,14 @@ function changeMonth(direction) {
 // データを更新する関数 (適宜実際のデータ更新処理を追加)
 function updateData() {
   // 仮のデータ更新処理
-  fuyo_worked = getRandomValue();
-  fuyo_rest = getRandomValue();
-  in_worked = getRandomValue();
-  in_time = getRandomValue();
-  out_value1 = getRandomValue();
-  out_value2 = getRandomValue();
-  total_out = out_value1 + out_value2;
-  total_bop = in_worked - total_out;
+  fuyo_worked = getRandomValue();      //扶養欄の働いた金額
+  fuyo_rest = getRandomValue();        //扶養欄の残った金額
+  in_worked = getRandomValue();        //収入欄の働いた金額
+  in_time = getRandomValue();          //収入欄の勤務時間
+  out_value1 = getRandomValue();       //支出１
+  out_value2 = getRandomValue();       //支出２
+  total_out = out_value1 + out_value2; //支出欄の支出の合計
+  total_bop = in_worked - total_out;   //収支欄の収支の合計
 
   // HTMLに反映
   document.getElementById('fuyo_work_value').innerHTML =
