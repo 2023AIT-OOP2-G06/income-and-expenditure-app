@@ -1,4 +1,39 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+  var shiftData = [
+    {date: 1, shift: ""},
+    {date: 2, shift: ""},
+    {date: 3, shift: ""},
+    {date: 4, shift: ""},
+    {date: 5, shift: ""},
+    {date: 6, shift: ""},
+    {date: 7, shift: ""},
+    {date: 8, shift: ""},
+    {date: 9, shift: ""},
+    {date: 10, shift: ""},
+    {date: 11, shift: ""},
+    {date: 12, shift: ""},
+    {date: 13, shift: ""},
+    {date: 14, shift: ""},
+    {date: 15, shift: ""},
+    {date: 16, shift: ""},
+    {date: 17, shift: ""},
+    {date: 18, shift: ""},
+    {date: 19, shift: ""},
+    {date: 20, shift: ""},
+    {date: 21, shift: ""},
+    {date: 22, shift: ""},
+    {date: 23, shift: ""},
+    {date: 24, shift: ""},
+    {date: 25, shift: ""},
+    {date: 26, shift: ""},
+    {date: 27, shift: ""},
+    {date: 28, shift: ""},
+    {date: 29, shift: ""},
+    {date: 30, shift: ""},
+    {date: 31, shift: ""},
+  ]
+
   var today = new Date();
   var currentMonth = today.getMonth();
   var currentYear = today.getFullYear();
@@ -57,43 +92,11 @@ document.addEventListener("DOMContentLoaded", function () {
       var tbl = document.getElementById("calendar-body");
       tbl.innerHTML = "";
 
-      monthAndYear.innerHTML = months[month] + " " + year;
+      monthAndYear.innerHTML = year + "年" + months[month];
       selectYear.value = year;
       selectMonth.value = month;
 
-      shiftData = [
-        {date: 1, shift: ""},
-        {date: 2, shift: ""},
-        {date: 3, shift: ""},
-        {date: 4, shift: ""},
-        {date: 5, shift: ""},
-        {date: 6, shift: ""},
-        {date: 7, shift: ""},
-        {date: 8, shift: ""},
-        {date: 9, shift: ""},
-        {date: 10, shift: ""},
-        {date: 11, shift: ""},
-        {date: 12, shift: ""},
-        {date: 13, shift: ""},
-        {date: 14, shift: ""},
-        {date: 15, shift: ""},
-        {date: 16, shift: ""},
-        {date: 17, shift: ""},
-        {date: 18, shift: ""},
-        {date: 19, shift: ""},
-        {date: 20, shift: ""},
-        {date: 21, shift: ""},
-        {date: 22, shift: ""},
-        {date: 23, shift: ""},
-        {date: 24, shift: ""},
-        {date: 25, shift: ""},
-        {date: 26, shift: ""},
-        {date: 27, shift: ""},
-        {date: 28, shift: ""},
-        {date: 29, shift: ""},
-        {date: 30, shift: ""},
-        {date: 31, shift: ""},
-      ]
+      
 
       var date = 1;
       for (var i = 0; i < 6; i++) {
