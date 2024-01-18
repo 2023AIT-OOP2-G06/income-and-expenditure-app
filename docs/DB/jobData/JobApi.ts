@@ -1,8 +1,7 @@
-//TODO:中身を作成する
 class JobApi {
     private static key: string = 'JobList';
 
-    // @param {JobModel[]} JobList
+    // @param {JobModel[]} Job
     static setJob(
         job: JobModel
     ) {
