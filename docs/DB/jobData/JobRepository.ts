@@ -4,7 +4,7 @@ class JobRepository {
 
     // この関数はJobのデータを取得する
     // @param {number} id
-    // @return {JobModel} Job
+    // @return {JobModel} job
     getJob()
     {
         // DBに保存されている文字列を取得する
@@ -28,10 +28,10 @@ class JobRepository {
         // DBに保存されている文字列を取得する
         const db = JobApi.getJob();
         // 文字列からオブジェクトに変換をかける
-        const Job:JobModel = JSON.parse(db? db : '[]');
+        const job:JobModel = JSON.parse(db? db : '[]');
 
         // DBに上書き保存をする
-        JobApi.setJob(newJob);
+        JobApi.setJob(job);
 
         // 最新のJobを返す
         return JobApi.getJob();

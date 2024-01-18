@@ -1,7 +1,7 @@
-class jobSettingMain {
+class JobSettingMain {
     getJob(){
         const jobRepository = new JobRepository();
-        const job = jobRepository.getjob();
+        const job = jobRepository.getJob();
         console.log(job);
     };
 
