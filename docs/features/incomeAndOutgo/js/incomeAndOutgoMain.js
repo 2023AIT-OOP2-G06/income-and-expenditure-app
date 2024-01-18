@@ -48,7 +48,7 @@ function changeMonth(direction) {
 function updateData() {
   // 仮のデータ更新処理
   fuyo_worked = getRandomValue();      //扶養欄の働いた金額
-  fuyo_rest = getRandomValue();        //扶養欄の残った金額
+  fuyo_rest = fuyo_value - fuyo_worked;//扶養欄の残った金額
   in_worked = getRandomValue();        //収入欄の働いた金額
   in_time = getRandomValue();          //収入欄の勤務時間
   out_value1 = getRandomValue();       //支出１
