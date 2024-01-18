@@ -7,6 +7,8 @@ class JobSettingMain {
 
     setJob(){
 
+        const jobRepository = new JobRepository();
+
         const job = {
             jobname: 'ファミリーマート',
             // 来月に変更する
@@ -15,6 +17,9 @@ class JobSettingMain {
         };
         
         console.log(job);
+
+        jobRepository.setJob(job);
+
     }
     
 }

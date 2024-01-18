@@ -24,13 +24,8 @@ class JobRepository {
     setJob(
         newJob: JobModel
     ){
-        // DBに保存されている文字列を取得する
-        const db = JobApi.getJob();
-        // 文字列からオブジェクトに変換をかける
-        const job:JobModel = JSON.parse(db? db : '[]');
-
         // DBに上書き保存をする
-        JobApi.setJob(job);
+        JobApi.setJob(newJob);
 
         // 最新のJobを返す
         return JobApi.getJob();
