@@ -11,12 +11,12 @@ class ShiftRepository {
         // DBに保存されている文字列を取得する
         const db = ShiftApi.getShiftList();
         // 文字列からオブジェクトに変換をかける
-        const ShiftList:ShiftModel[] = JSON.parse(db? db : '[]');
+        const shiftList:ShiftModel[] = JSON.parse(db? db : '[]');
 
         // idが同じShiftを取得
-        const Shift = ShiftList.find(Shift => Shift.id === id);
+        const shift = shiftList.find(Shift => Shift.id === id);
         //返す
-        return Shift;
+        return shift;
     }
 
     // この関数は全てのShiftを取得する
@@ -25,10 +25,10 @@ class ShiftRepository {
         // DBに保存されている文字列を取得する
         const db = ShiftApi.getShiftList();
         // 文字列からオブジェクトに変換をかける
-        const ShiftList:ShiftModel[] = JSON.parse(db? db : '[]');
+        const shiftList:ShiftModel[] = JSON.parse(db? db : '[]');
 
         //そのまま全てを返す
-        return ShiftList;
+        return shiftList;
     }
 
     // この関数は年と月を用いてその条件にあうShiftを全て取得する
@@ -42,19 +42,19 @@ class ShiftRepository {
         // DBに保存されている文字列を取得する
         const db = ShiftApi.getShiftList();
         // 文字列からオブジェクトに変換をかける
-        const ShiftList:ShiftModel[] = JSON.parse(db? db : '[]');
+        const shiftList:ShiftModel[] = JSON.parse(db? db : '[]');
 
         // 年と月でフィルターをかけてその月のShiftを全て出力させる
-        const ShiftMonthAll = ShiftList.filter(Shift => {
-            const ShiftDate = new Date(Shift.date);
-            const ShiftYear = ShiftDate.getFullYear();
-            const ShiftMonth = ShiftDate.getMonth() + 1;
+        const shiftMonthAll = shiftList.filter(shift => {
+            const shiftDate = new Date(shift.date);
+            const shiftYear = shiftDate.getFullYear();
+            const shiftMonth = shiftDate.getMonth() + 1;
 
-            return ShiftYear === year && ShiftMonth === month;
+            return shiftYear === year && shiftMonth === month;
         });
 
         // 返す
-        return ShiftMonthAll;
+        return shiftMonthAll;
     }   
 
     // ================== SET ==================
@@ -63,23 +63,23 @@ class ShiftRepository {
     // @param {ShiftModel} Shift
     // @return {ShiftModel[]} ShiftList
     setShift(
-        Shift: ShiftModel
+        shift: ShiftModel
     ){
         // DBに保存されている文字列を取得する
         const db = ShiftApi.getShiftList();
         // 文字列からオブジェクトに変換をかける
-        const ShiftList:ShiftModel[] = JSON.parse(db? db : '[]');
+        const shiftList:ShiftModel[] = JSON.parse(db? db : '[]');
 
         // idを設定する
         // 一番最後の支出のidに1を足す
         // もしも被ってデータを消したりできない場合はUUIDに変換するといいかもしれない
-        const lastShift = ShiftList[ShiftList.length - 1];
-        Shift.id = lastShift ? lastShift.id + 1 : 0;
+        const lastShift = shiftList[shiftList.length - 1];
+        shift.id = lastShift ? lastShift.id + 1 : 0;
 
         // 取得したListの最後に追加する
-        ShiftList.push(Shift);
+        shiftList.push(shift);
         // DBに上書き保存をする
-        ShiftApi.setShiftList(ShiftList);
+        ShiftApi.setShiftList(shiftList);
 
         // 最新のListを返す
         return ShiftApi.getShiftList();
@@ -89,10 +89,10 @@ class ShiftRepository {
     // @param {ShiftModel[]} ShiftList
     // @return {ShiftModel[]} ShiftList
     setShiftList(
-        ShiftList: ShiftModel[]
+        shiftList: ShiftModel[]
     ){
         // そのままDBを上書き保存する
-        ShiftApi.setShiftList(ShiftList);
+        ShiftApi.setShiftList(shiftList);
 
         // 最新のListを返す
         return this.getShiftList();
@@ -108,10 +108,10 @@ class ShiftRepository {
         // DBに保存されている文字列を取得する
         const db = ShiftApi.getShiftList();
         // 文字列からオブジェクトに変換をかける
-        const ShiftList:ShiftModel[] = JSON.parse(db? db : '[]');
+        const shiftList:ShiftModel[] = JSON.parse(db? db : '[]');
 
         // idが同じ支出をフィルターかける
-        const newShiftList = ShiftList.filter(Shift => Shift.id !== id);
+        const newShiftList = shiftList.filter(shift => shift.id !== id);
         // DBに上書き保存をする
         ShiftApi.setShiftList(newShiftList);
 
@@ -134,16 +134,16 @@ class ShiftRepository {
     // @param {ShiftModel} Shift
     // @return {ShiftModel[]} ShiftList
     updateShift(
-        Shift: ShiftModel
+        shift: ShiftModel
     ){
         // DBに保存されている文字列を取得する
         const db = ShiftApi.getShiftList();
         // 文字列からオブジェクトに変換をかける
-        const ShiftList:ShiftModel[] = JSON.parse(db? db : '[]');
+        const shiftList:ShiftModel[] = JSON.parse(db? db : '[]');
         // idが同じShiftを消す
-        const newShiftList = ShiftList.filter(it => it.id !== Shift.id);
+        const newShiftList = shiftList.filter(it => it.id !== shift.id);
         // 新しいShiftを追加する
-        newShiftList.push(Shift);
+        newShiftList.push(shift);
 
         // DBに上書き保存をする
         ShiftApi.setShiftList(newShiftList);

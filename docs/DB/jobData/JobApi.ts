@@ -1,14 +1,14 @@
 class JobApi {
-    private static key: string = 'JobList';
+    private static key: string = 'Job';
 
-    // @param {JobModel[]} Job
+    // @param {JobModel} Job
     static setJob(
         job: JobModel
     ) {
 
-        const JobString = JSON.stringify(job);
+        const jobString = JSON.stringify(job);
 
-        localStorage.setItem(this.key, JobString);
+        localStorage.setItem(this.key, jobString);
     }
 
     static getJob(){

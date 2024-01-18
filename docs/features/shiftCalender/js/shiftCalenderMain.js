@@ -12,7 +12,6 @@ class ShiftMain {
             id: 0,
             // 来月に変更する
             date: new Date(2021, 3, 1),
-            moment: new Date(2021, 3, 1,12),
             time: 3,
         };
 
@@ -22,7 +21,7 @@ class ShiftMain {
 
     getShiftMonthAll(){
         const shiftRepository = new ShiftRepository();
-        const shiftMonthAll = shiftRepository.getShiftMonthAll(2021, 1);
+        const shiftMonthAll = shiftRepository.getShiftMonthAll(2021, 3);
         console.log(shiftMonthAll);
     }
 }

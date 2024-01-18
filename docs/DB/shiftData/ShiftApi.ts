@@ -3,16 +3,16 @@ class ShiftApi {
 
     // @param {ShiftModel[]} ShiftList
     static setShiftList(
-        ShiftList: ShiftModel[]
+        shiftList: ShiftModel[]
     ) {
-        // dataでソートする
-        ShiftList.sort(
+        // dateでソートする
+        shiftList.sort(
             (x, y) => (new Date(x.date).getTime()) - (new Date(y.date).getTime()),
         )
 
-        const ShiftListString = JSON.stringify(ShiftList);
+        const shiftListString = JSON.stringify(shiftList);
 
-        localStorage.setItem(this.key, ShiftListString);
+        localStorage.setItem(this.key, shiftListString);
     }
 
     static getShiftList(){

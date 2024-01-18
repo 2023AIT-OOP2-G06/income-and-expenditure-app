@@ -3,7 +3,6 @@ class JobRepository {
     // ================ GET ================
 
     // この関数はJobのデータを取得する
-    // @param {number} id
     // @return {JobModel} job
     getJob()
     {
@@ -21,7 +20,7 @@ class JobRepository {
 
     // バイト先の設定のデータをもらうことで、DBに保存する
     // @param {JobModel} 
-    // @return {JobModel[]} newJob
+    // @return {JobModel} newJob
     setJob(
         newJob: JobModel
     ){
@@ -40,7 +39,7 @@ class JobRepository {
     // ================== DELETE ==================
 
     // バイト先の設定を削除する関数
-    // @return {JobModel[]} Job
+    // @return {JobModel} Job
     deleteJob(){
         // 全ての支出を削除する
         JobApi.deleteJob();
