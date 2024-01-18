@@ -19,6 +19,23 @@
     border-radius: 4px;
     padding: 5px 10px;
   }
+
+/* 追加ボタンのスタイル */
+#addNumberBtn {
+  cursor: pointer;
+  display: inline-block;
+  zoom: 1;
+  background: #00a2b7;
+  color: #fff;
+  border: 1px solid #0aa2b5;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+
+
+
+
   .table-calendar {
     border-collapse: collapse;
     width: 100%;
