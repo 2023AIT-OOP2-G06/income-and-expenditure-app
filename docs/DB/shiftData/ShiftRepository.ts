@@ -48,7 +48,7 @@ class ShiftRepository {
         const shiftMonthAll = shiftList.filter(shift => {
             const shiftDate = new Date(shift.date);
             const shiftYear = shiftDate.getFullYear();
-            const shiftMonth = shiftDate.getMonth() + 1;
+            const shiftMonth = shiftDate.getMonth();
 
             return shiftYear === year && shiftMonth === month;
         });

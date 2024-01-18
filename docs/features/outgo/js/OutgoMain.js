@@ -21,7 +21,7 @@ class OutgoMain {
 
     getOutgoMonthAll(){
         const outgoRepository = new OutgoRepository();
-        const outgoMonthAll = outgoRepository.getOutgoMonthAll(2024, 1);
+        const outgoMonthAll = outgoRepository.getOutgoMonthAll(2021, 3);
         console.log(outgoMonthAll);
     }
 }

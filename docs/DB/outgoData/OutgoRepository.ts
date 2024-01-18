@@ -48,7 +48,7 @@ class OutgoRepository {
         const outgoMonthAll = outgoList.filter(outgo => {
             const outgoDate = new Date(outgo.date);
             const outgoYear = outgoDate.getFullYear();
-            const outgoMonth = outgoDate.getMonth() + 1;
+            const outgoMonth = outgoDate.getMonth();
 
             return outgoYear === year && outgoMonth === month;
         });
