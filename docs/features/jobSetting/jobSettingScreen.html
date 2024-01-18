@@ -15,12 +15,12 @@
         <!--=============== DB用、ここだけTypeScriptを使わせてもらっています。みんなもTSを使ってもいいよ。 ===============-->
         <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoApi.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoEntity.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoRepository.ts"></script> 
+        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobApi.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobEntity.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobRepository.ts"></script> 
 
         <!--=============== JS ===============-->
-        <!-- <script type="text/babel" data-presets="typescript" src="./js/OutgoMain.ts"></script> -->
+        <!-- <script type="text/babel" data-presets="typescript" src="./js/JobMain.ts"></script> -->
 
         <script src="./js/jobSettingMain.js"></script>
 
@@ -32,8 +32,8 @@
 
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
             onclick="
-                const JobMain = new JobMain();
-                JobMain.setJob();
+                const jobMain = new JobMain();
+                jobMain.setJob();
             "
         >
             設定を追加
@@ -41,8 +41,8 @@
 
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
             onclick="
-                const JobMain = new JobMain();
-                JobMain.getJOb();
+                const jobMain = new JobMain();
+                jobMain.getJob();
             "
         >
             設定を確認

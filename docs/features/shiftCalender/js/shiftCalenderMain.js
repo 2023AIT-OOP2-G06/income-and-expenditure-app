@@ -1,14 +1,14 @@
 class ShiftMain {
     getShift(){
-        const ShiftRepository = new ShiftRepository();
-        const Shift = ShiftRepository.getShiftList();
-        console.log(Shift);
+        const shiftRepository = new ShiftRepository();
+        const shift = shiftRepository.getShiftList();
+        console.log(shift);
     };
 
     setShift(){
-        const ShiftRepository = new ShiftRepository();
+        const shiftRepository = new ShiftRepository();
 
-        const Shift = {
+        const shift = {
             id: 0,
             // 来月に変更する
             date: new Date(2021, 3, 1),
@@ -16,13 +16,13 @@ class ShiftMain {
             time: 3,
         };
 
-        const ShiftList = ShiftRepository.setShift(Shift);
-        console.log(ShiftList);
+        const shiftList = shiftRepository.setShift(shift);
+        console.log(shiftList);
     }
 
     getShiftMonthAll(){
-        const ShiftRepository = new ShiftRepository();
-        const ShiftMonthAll = ShiftRepository.getShiftMonthAll(2021, 1);
-        console.log(ShiftMonthAll);
+        const shiftRepository = new ShiftRepository();
+        const shiftMonthAll = shiftRepository.getShiftMonthAll(2021, 1);
+        console.log(shiftMonthAll);
     }
 }

@@ -1,12 +1,11 @@
 class jobSettingMain {
     getJob(){
-        const JobRepository = new JobRepository();
-        const job = JobRepository.getjob();
+        const jobRepository = new JobRepository();
+        const job = jobRepository.getjob();
         console.log(job);
     };
 
     setJob(){
-        const JobRepository = new JobRepository();
 
         const job = {
             jobname: 'ファミリーマート',

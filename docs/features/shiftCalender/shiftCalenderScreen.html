@@ -15,14 +15,14 @@
         <!--=============== DB用、ここだけTypeScriptを使わせてもらっています。みんなもTSを使ってもいいよ。 ===============-->
         <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoApi.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoEntity.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoRepository.ts"></script> 
+        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftApi.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftEntity.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftRepository.ts"></script> 
 
         <!--=============== JS ===============-->
-        <!-- <script type="text/babel" data-presets="typescript" src="./js/OutgoMain.ts"></script> -->
+        <!-- <script type="text/babel" data-presets="typescript" src="./js/ShiftMain.ts"></script> -->
 
-        <script src="./js/shiftCarenderMain.js"></script>
+        <script src="./js/shiftCalenderMain.js"></script>
 
         <title>シフト管理カレンダー</title>
     </head>
@@ -49,8 +49,8 @@
 
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
             onclick="
-                const ShiftMain = new ShiftMain();
-                ShiftMain.getShiftMonthAll();
+                const shiftMain = new ShiftMain();
+                shiftMain.getShiftMonthAll();
             "
         >
             シフトを月で取得
