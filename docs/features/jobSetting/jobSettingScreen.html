@@ -12,13 +12,44 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
 
+        <!--=============== DB用、ここだけTypeScriptを使わせてもらっています。みんなもTSを使ってもいいよ。 ===============-->
+        <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoApi.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoEntity.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoRepository.ts"></script> 
+
+        <!--=============== JS ===============-->
+        <!-- <script type="text/babel" data-presets="typescript" src="./js/OutgoMain.ts"></script> -->
+
+        <script src="./js/jobSettingMain.js"></script>
+
         <title>バイト先設定</title>
     </head>
     <body>
         <h2 class="section__title">バイト先設定</h2>
 
 
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            onclick="
+                const JobMain = new JobMain();
+                JobMain.setJob();
+            "
+        >
+            設定を追加
+        </button>
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            onclick="
+                const JobMain = new JobMain();
+                JobMain.getJOb();
+            "
+        >
+            設定を確認
+        </button>
+
+
         <!--=============== BootstrapのJS ===============-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> -->
     </body>
 </html>
