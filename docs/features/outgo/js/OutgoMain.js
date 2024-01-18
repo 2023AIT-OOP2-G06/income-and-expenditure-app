@@ -51,7 +51,11 @@ class OutgoMain {
     }
 }
 
-window.onload = function(){
-    const OutgoMain = new OutgoMain();
-    OutgoMain.getOutgo()
+window.onload = function() {
+
+    setTimeout(function() {
+        const outgoMain = new OutgoMain();
+        outgoMain.getOutgo();
+    }, 100);
+    
 }
