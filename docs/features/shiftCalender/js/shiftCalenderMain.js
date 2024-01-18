@@ -63,36 +63,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
       shiftData = [
         {date: 1, shift: ""},
-        {date: 2, shift: "8h"},
+        {date: 2, shift: ""},
         {date: 3, shift: ""},
-        {date: 4, shift: "8h"},
-        {date: 5, shift: "8h"},
-        {date: 6, shift: "8h"},
-        {date: 7, shift: "8h"},
+        {date: 4, shift: ""},
+        {date: 5, shift: ""},
+        {date: 6, shift: ""},
+        {date: 7, shift: ""},
         {date: 8, shift: ""},
-        {date: 9, shift: "8h"},
-        {date: 10, shift: "8h"},
-        {date: 11, shift: "8h"},
+        {date: 9, shift: ""},
+        {date: 10, shift: ""},
+        {date: 11, shift: ""},
         {date: 12, shift: ""},
-        {date: 13, shift: "8h"},
-        {date: 14, shift: "8h"},
-        {date: 15, shift: "8h"},
-        {date: 16, shift: "8h"},
+        {date: 13, shift: ""},
+        {date: 14, shift: ""},
+        {date: 15, shift: ""},
+        {date: 16, shift: ""},
         {date: 17, shift: ""},
-        {date: 18, shift: "8h"},
-        {date: 19, shift: "8h"},
-        {date: 20, shift: "4h"},
-        {date: 21, shift: "8h"},
-        {date: 22, shift: "8h"},
+        {date: 18, shift: ""},
+        {date: 19, shift: ""},
+        {date: 20, shift: ""},
+        {date: 21, shift: ""},
+        {date: 22, shift: ""},
         {date: 23, shift: ""},
-        {date: 24, shift: "8h"},
+        {date: 24, shift: ""},
         {date: 25, shift: ""},
-        {date: 26, shift: "8h"},
-        {date: 27, shift: "8h"},
+        {date: 26, shift: ""},
+        {date: 27, shift: ""},
         {date: 28, shift: ""},
-        {date: 29, shift: "8h"},
-        {date: 30, shift: "8h"},
-        {date: 31, shift: "8h"},
+        {date: 29, shift: ""},
+        {date: 30, shift: ""},
+        {date: 31, shift: ""},
       ]
 
       var date = 1;
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   cell.setAttribute("data-month_name", months[month]);
                   cell.className = "date-picker";
                   cell.innerHTML = "<span>" + date + "</span>";
-                  cell.innerHTML += "<p>" + shiftData[date-1].shift + "</p>";
+                  cell.innerHTML += "<p>" + shiftData[date-1].shift + "h"+ "</p>";
                   
                   if ( date === today.getDate() && year === today.getFullYear() && month === today.getMonth() ) {
                     cell.className = "date-picker selected";
