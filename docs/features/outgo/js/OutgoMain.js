@@ -33,15 +33,20 @@ class OutgoMain {
     setOutgo(){
         const outgoRepository = new OutgoRepository();
 
+        const inputDate = document.querySelector('#new-date');
+        const inputPrice = document.querySelector('#new-price');
+        const strDate = inputDate.value.split('-');
+
         const outgo = {
             id: 0,
-            // 来月に変更する
-            date: new Date(2021, 3, 1),
-            price: 1000,
+            // 今月に調整->strDate[1]-1、今日に調整->strDate[2]+1
+            date: new Date(Number(strDate[0]), Number(strDate[1])-1, Number(strDate[2])+1),
+            price: Number(inputPrice.value),
         };
 
         const outgoList = outgoRepository.setOutgo(outgo);
         console.log(outgoList);
+        this.getOutgo()
     }
 
     getOutgoMonthAll(){
