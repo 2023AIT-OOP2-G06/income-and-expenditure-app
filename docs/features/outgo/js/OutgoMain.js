@@ -33,20 +33,38 @@ class OutgoMain {
     setOutgo(){
         const outgoRepository = new OutgoRepository();
 
+        // 取得
         const inputDate = document.querySelector('#new-date');
         const inputPrice = document.querySelector('#new-price');
-        const strDate = inputDate.value.split('-');
+        const valDate = inputDate.value;
+        const valPrice = inputPrice.value;
+        inputDate.value = '';
+        inputPrice.value = '';
 
-        const outgo = {
-            id: 0,
-            // 今月に調整->strDate[1]-1、今日に調整->strDate[2]+1
-            date: new Date(Number(strDate[0]), Number(strDate[1])-1, Number(strDate[2])+1),
-            price: Number(inputPrice.value),
-        };
+        try {
+            // 空欄の判定(Priceが半角数字以外でもここで判定可能)
+            if(valDate == '' || valPrice == ''){
+                throw new Error('入力に誤りがあります');
+            }
+            // [0]-year,[1]-month,[2]-day
+            const strDate = valDate.split('-');
 
-        const outgoList = outgoRepository.setOutgo(outgo);
-        console.log(outgoList);
-        this.getOutgo()
+            const outgo = {
+                id: 0,
+                // 今月に調整->strDate[1]-1、今日に調整->strDate[2]+1
+                date: new Date(Number(strDate[0]), Number(strDate[1])-1, Number(strDate[2])+1),
+                price: Number(valPrice),
+            };
+    
+            const outgoList = outgoRepository.setOutgo(outgo);
+            console.log(outgoList);
+            // リストの更新
+            this.getOutgo()
+        } catch (e) {
+            console.log(e.name, e.message);
+            alert(e.message);
+        }
+
     }
 
     getOutgoMonthAll(){
