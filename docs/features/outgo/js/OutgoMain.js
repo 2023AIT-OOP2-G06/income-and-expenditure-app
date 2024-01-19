@@ -71,7 +71,7 @@ class OutgoMain {
         const outgoRepository = new OutgoRepository();
         // 今日の日付を取得
         const today = new Date()
-        const outgoMonthAll = outgoRepository.getOutgoMonthAll(Number(today.getFullYear()), Number(today.getMonth())+1);
+        const outgoMonthAll = outgoRepository.getOutgoMonthAll(Number(today.getFullYear()), Number(today.getMonth()));
         console.log(outgoMonthAll);
 
         // 画面上に表示(getOutgoとほとんど同じ)
