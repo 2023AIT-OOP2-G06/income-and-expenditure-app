@@ -69,8 +69,35 @@ class OutgoMain {
 
     getOutgoMonthAll(){
         const outgoRepository = new OutgoRepository();
-        const outgoMonthAll = outgoRepository.getOutgoMonthAll(2024, 1);
+        // 今日の日付を取得
+        const today = new Date()
+        const outgoMonthAll = outgoRepository.getOutgoMonthAll(Number(today.getFullYear()), Number(today.getMonth())+1);
         console.log(outgoMonthAll);
+
+        // 画面上に表示(getOutgoとほとんど同じ)
+        const ulPointer = document.querySelector('ul');
+        while(ulPointer.firstChild){// 一旦全消去
+            ulPointer.removeChild(ulPointer.firstChild);
+        }
+        outgoMonthAll.forEach(element => {
+            const newLi = document.createElement('li');
+            newLi.classList.add('list-group-item');
+            const newDate = document.createElement('div');
+            // dateの表示を年月日に限定
+            const spStr = element.date.split('T');
+            newDate.innerText = spStr[0];
+            newLi.appendChild(newDate);
+            const newPrice = document.createElement('div');
+            newPrice.innerText = element.price;
+            newLi.appendChild(newPrice);
+            /*
+            <li class='list-group-item'>
+                <div>spStr[0]</div>
+                <div>element.price</div>
+            </li>
+             */
+            ulPointer.appendChild(newLi);
+        });
     }
 }
 
