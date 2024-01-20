@@ -1,0 +1,20 @@
+div,ul{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.form-label{
+    opacity: 0.5;
+}
+.form-control{
+    font-family: "YuMincho";
+}
+#head-button{
+    margin-left: 5%;
+}
+ul{
+    margin-top: 20px;
+}
+.list-group-item{
+    display: flex;
+    justify-content: space-between;
+}
