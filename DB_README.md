@@ -7,9 +7,9 @@
 ```html
         <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftApi.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftEntity.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftRepository.ts"></script> 
+        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoApi.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoEntity.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoRepository.ts"></script>
 ```
 と最初入力することでインポートされデータベースが使えるようになる
 
@@ -69,11 +69,11 @@ getShiftMonthAll(){
             id: 0,
             // 来月に変更する
             date: new Date(2021, 3, 1),
-            time: 3,
+            price: 1000,
         };
 
-        const shiftList = shiftRepository.setShift(shift);
-        console.log(shiftList);
+        const outgoList = outgoRepository.setOutgo(outgo);
+        console.log(outgoList);
     }
 ```
 このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
@@ -91,26 +91,86 @@ getShiftMonthAll(){
 HTML上ではこのようにすることでボタンを押すとログ上にローカルストレージ上のカレンダーが追加される
 
 #### 消去
+使用例として、JavaScript上で
+```js
+deleteOutgo(){
+
+    const outgoMain = new OutgoRepository();
+    OutgoMain.deleteJob(outgo);
+    console.log(outgo);
+}
+```
+このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
+```html
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            onclick="
+                const outgoMain = new OutgoMain();
+                shiftMain.deleteOutgo();
+            "
+        >
+            支出を削除
+        </button>
+```
+HTML上ではこのようにすることでボタンを押すとログ上にローカルストレージ上の設定が削除される
 
 #### 更新
+
+使用例として、JavaScript上で
+```js
+updateOutgo(){
+    const OutgoMain = new OutgoRepository();
+    const outgo = OutgoMain.UpdateOutgo();
+    console.log(shift);
+};
+```
+このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
+```html
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            onclick="
+                const outgoMain = new OutgoMain();
+                outgoMain.updateOutgo();
+            "
+        >
+            支出を更新
+        </button>
+```
+HTML上ではこのようにすることでボタンを押すとログ上にローカルストレージ上のカレンダーが取得される
 
 ## 1.2 収支のデータを扱う方法
 
 ### ファイルを読み込む方法
+```html
+        <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftApi.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftEntity.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftRepository.ts"></script> 
+
+        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoApi.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoEntity.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoRepository.ts"></script>
+
+        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobApi.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobEntity.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobRepository.ts"></script> 
+```
+と最初入力することでインポートされデータベースが使えるようになる。
+収支管理は全てのデータベースを使用する
 
 ### データの扱いかた
-
-#### 取得
-
-#### 追加
-
-#### 消去
-
-#### 更新
+基本的に他の三つのものと変わらない。
+全てを使用しつつつ取得したものを組み合わ背て表示をさせる必要がある。
 
 ## 1.3 シフトデータを扱う方法
 
 ### ファイルを読み込む方法
+```html
+        <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftApi.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftEntity.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftRepository.ts"></script> 
+```
 
 ### データの扱いかた
 
@@ -239,9 +299,9 @@ HTML上ではこのようにすることでボタンを押すとログ上にロ�
 ```html
         <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftApi.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftEntity.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftRepository.ts"></script> 
+        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobApi.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobEntity.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobRepository.ts"></script> 
 ```
 と最初入力することでインポートされデータベースが使えるようになる
 
