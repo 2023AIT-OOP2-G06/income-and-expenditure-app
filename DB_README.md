@@ -47,13 +47,30 @@ const outgo = outgoRepository.getOutgo(0);
 const outgoRepository = new OutgoRepository();
 const outgoMonthAll = outgoRepository.getOutgoMonthAll(2021, 3);
 ```
+月ごとにデータを取得するとjsonファイルはこうなります
 ```json
-{
-    date: "2021-03-31T15:00:00.000Z"
-    id: 0
-    moment: "2021-04-01T03:00:00.000Z"
-    time: 3
-}
+[
+    {
+        "id": 0,
+        "date": "2021-03-31T15:00:00.000Z",
+        "price": 1000
+    },
+    {
+        "id": 1,
+        "date": "2021-03-31T15:00:00.000Z",
+        "price": 1000
+    },
+    {
+        "id": 2,
+        "date": "2021-03-31T15:00:00.000Z",
+        "price": 1000
+    },
+    {
+        "id": 3,
+        "date": "2021-03-31T15:00:00.000Z",
+        "price": 1000
+    }
+]
 ```
 #### 追加
 使用例として、JavaScript上で
@@ -144,6 +161,35 @@ const shift = shiftRepository.getShift(id);
 ```js
 const shiftRepository = new ShiftRepository();
 const shiftMonthAll = shiftRepository.getShiftMonthAll(2021, 3);
+```
+月ごとにデータを取得するとjsonファイルはこうなります
+```json
+[
+    {
+        "id": 0,
+        "date": "2021-03-31T15:00:00.000Z",
+        "moment": "2021-04-01T03:00:00.000Z",
+        "time": 3
+    },
+    {
+        "id": 1,
+        "date": "2021-03-31T15:00:00.000Z",
+        "moment": "2021-04-01T03:00:00.000Z",
+        "time": 3
+    },
+    {
+        "id": 2,
+        "date": "2021-03-31T15:00:00.000Z",
+        "moment": "2021-04-01T03:00:00.000Z",
+        "time": 3
+    },
+    {
+        "id": 3,
+        "date": "2021-03-31T15:00:00.000Z",
+        "moment": "2021-04-01T03:00:00.000Z",
+        "time": 3
+    }
+]
 ```
 
 #### 追加
