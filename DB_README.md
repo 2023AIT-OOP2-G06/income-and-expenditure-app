@@ -90,18 +90,24 @@ const outgoList = outgoRepository.setOutgo(outgo);
 #### 消去
 使用例として、JavaScript上で
 ```js
-const outgoMain = new OutgoRepository();
+const outgoRepository = new OutgoRepository();
 const id = 0;
 //outgo はデリートしたいidを入力します
-OutgoMain.deleteOutgo(id);
+outgoRepository.deleteOutgo(id);
 ```
 
 #### 更新
 
 使用例として、JavaScript上で
 ```js
-const OutgoMain = new OutgoRepository();
-const outgo = OutgoMain.UpdateOutgo();
+const outgoRepository = new OutgoRepository();
+const newOutgo = {
+    id: 0,
+    //IDは自動で増えていくため初期値は0でもよい
+    date: new Date(2021, 3, 1),
+    price: 1000,
+};
+const outgo = outgoRepository.UpdateOutgo(newOutgo);
 ```
 
 これを行うと重複したIdのデータが会ったときに古い方のIdのデータを新しいデータに更新する
@@ -220,7 +226,12 @@ shiftRepository.deleteShift(id);
 使用例として、JavaScript上で
 ```js
 const shiftRepository = new ShiftRepository();
-const shift = shiftRepository.UpdateShift();
+const newShift = {
+    id: 0,
+    date: new Date(2021, 3, 1),
+    time: 3,
+};
+const shift = shiftRepository.updateShift(newShift);
 ```
 
 これを行うと重複したIdのデータが会ったときに古い方のIdのデータを新しいデータに更新する
@@ -265,8 +276,6 @@ jobRepository.setJob(job);
 使用例として、JavaScript上で
 ```js
 const jobRepository = new JobRepository();
-const id = 0;
-jobRepository.deleteJob(id);
+jobRepository.deleteJob();
 ```
-削除したいidをidに設定します
 
