@@ -94,7 +94,7 @@ const outgoList = outgoRepository.setOutgo(outgo);
 const outgoRepository = new OutgoRepository();
 const id = 0;
 //outgo はデリートしたいidを入力します
-const outgo = outgoRepository.deleteOutgo(id);
+const outgoList = outgoRepository.deleteOutgo(id);
 ```
 これの返り値では削除された後のリストを全て返します
 
@@ -109,7 +109,7 @@ const newOutgo = {
     date: new Date(2021, 3, 1),
     price: 1000,
 };
-const outgo = outgoRepository.updateOutgo(newOutgo);
+const outgoList = outgoRepository.updateOutgo(newOutgo);
 ```
 これを行うと重複したIdのデータがあったときに古い方のIdのデータを新しいデータに更新する
 
@@ -222,7 +222,7 @@ const shiftList = shiftRepository.setShift(shift);
 const shiftRepository = new ShiftRepository();
 const id = 0;
 //idが０の部分をデリートします
-shiftRepository.deleteShift(id);
+const shiftList = shiftRepository.deleteShift(id);
 ```
 #### 更新
 
@@ -234,7 +234,7 @@ const newShift = {
     date: new Date(2021, 3, 1),
     time: 3,
 };
-const shift = shiftRepository.updateShift(newShift);
+const shiftList = shiftRepository.updateShift(newShift);
 ```
 これを行うと重複したIdのデータがあったときに古い方のIdのデータを新しいデータに更新する
 返り値として更新後の全てのデータを返します。
