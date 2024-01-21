@@ -1,40 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    var shiftData = [
-        {date: 1, shift: ""},
-        {date: 2, shift: ""},
-        {date: 3, shift: ""},
-        {date: 4, shift: ""},
-        {date: 5, shift: ""},
-        {date: 6, shift: ""},
-        {date: 7, shift: ""},
-        {date: 8, shift: ""},
-        {date: 9, shift: ""},
-        {date: 10, shift: ""},
-        {date: 11, shift: ""},
-        {date: 12, shift: ""},
-        {date: 13, shift: ""},
-        {date: 14, shift: ""},
-        {date: 15, shift: ""},
-        {date: 16, shift: ""},
-        {date: 17, shift: ""},
-        {date: 18, shift: ""},
-        {date: 19, shift: ""},
-        {date: 20, shift: ""},
-        {date: 21, shift: ""},
-        {date: 22, shift: ""},
-        {date: 23, shift: ""},
-        {date: 24, shift: ""},
-        {date: 25, shift: ""},
-        {date: 26, shift: ""},
-        {date: 27, shift: ""},
-        {date: 28, shift: ""},
-        {date: 29, shift: ""},
-        {date: 30, shift: ""},
-        {date: 31, shift: ""},
-      ];
-
-  
     var today = new Date();
     var currentMonth = today.getMonth();
     var currentYear = today.getFullYear();
@@ -60,7 +25,15 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("thead-month").innerHTML = dayHeader;
   
     var monthAndYear = document.getElementById("monthAndYear");
-    showCalendar(currentMonth, currentYear);
+
+    function init() {
+      const shiftRepository = new ShiftRepository();
+      const shiftMonthAll = shiftRepository.getShiftMonthAll(currentYear, currentMonth);
+      console.log(shiftMonthAll);
+      
+      showCalendar(currentMonth, currentYear, shiftMonthAll);
+    }
+    setTimeout(init, 100);
   
     function generate_year_range(start, end) {
       var years = "";
@@ -73,22 +46,35 @@ document.addEventListener("DOMContentLoaded", function () {
     function next() {
       currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
       currentMonth = (currentMonth + 1) % 12;
-      showCalendar(currentMonth, currentYear);
+
+      const shiftRepository = new ShiftRepository();
+      const shiftMonthAll = shiftRepository.getShiftMonthAll(currentYear, currentMonth);
+      
+      showCalendar(currentMonth, currentYear, shiftMonthAll);
     }
   
     function previous() {
       currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
       currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
-      showCalendar(currentMonth, currentYear);
+
+      const shiftRepository = new ShiftRepository();
+      const shiftMonthAll = shiftRepository.getShiftMonthAll(currentYear, currentMonth);
+      console.log(shiftMonthAll);
+      
+      showCalendar(currentMonth, currentYear, shiftMonthAll);
     }
   
     function jump() {
       currentYear = parseInt(selectYear.value);
       currentMonth = parseInt(selectMonth.value);
-      showCalendar(currentMonth, currentYear);
+
+      const shiftRepository = new ShiftRepository();
+      const shiftMonthAll = shiftRepository.getShiftMonthAll(currentYear, currentMonth);
+
+      showCalendar(currentMonth, currentYear, shiftMonthAll);
     }
   
-    function showCalendar(month, year) {
+    function showCalendar(month, year, shiftData) {
       var firstDay = (new Date(year, month)).getDay();
       var tbl = document.getElementById("calendar-body");
       tbl.innerHTML = "";
@@ -117,7 +103,9 @@ document.addEventListener("DOMContentLoaded", function () {
             cell.setAttribute("data-month_name", months[month]);
             cell.className = "date-picker";
             cell.innerHTML = "<span>" + date + "</span>";
+            if(shiftData.length>0){
             cell.innerHTML += "<p>" + shiftData[date-1].shift + "h"+ "</p>";
+            }
   
             if ( date === today.getDate() && year === today.getFullYear() && month === today.getMonth() ) {
               cell.className = "date-picker selected";
