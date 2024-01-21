@@ -1,5 +1,5 @@
 type JobModel = {
     jobname: string;
-    date: Date;
+    payday: number;
     price: number;
 }

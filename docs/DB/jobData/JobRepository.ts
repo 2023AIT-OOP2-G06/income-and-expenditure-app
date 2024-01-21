@@ -36,9 +36,9 @@ class JobRepository {
     // バイト先の設定を削除する関数
     // @return {JobModel} Job
     deleteJob(){
-        // 全ての設定を削除する
+        // 設定を削除する
         JobApi.deleteJob();
-        // 最新のListを返す
+        // 最新のjobを返す
         return this.getJob();
     }
 }

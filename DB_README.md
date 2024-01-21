@@ -86,6 +86,7 @@ const outgo = {
 
 const outgoList = outgoRepository.setOutgo(outgo);
 ```
+これを行うことにとって支出データの最新のデータ全てを返します
 
 #### 消去
 使用例として、JavaScript上で
@@ -95,6 +96,7 @@ const id = 0;
 //outgo はデリートしたいidを入力します
 outgoRepository.deleteOutgo(id);
 ```
+これの返り値では削除された後のリストを全て返します
 
 #### 更新
 
@@ -107,10 +109,10 @@ const newOutgo = {
     date: new Date(2021, 3, 1),
     price: 1000,
 };
-const outgo = outgoRepository.UpdateOutgo(newOutgo);
+const outgo = outgoRepository.updateOutgo(newOutgo);
 ```
+これを行うと重複したIdのデータがあったときに古い方のIdのデータを新しいデータに更新する
 
-これを行うと重複したIdのデータが会ったときに古い方のIdのデータを新しいデータに更新する
 ## 1.2 収支のデータを扱う方法
 
 ### ファイルを読み込む方法
@@ -212,6 +214,7 @@ const shift = {
 
 const shiftList = shiftRepository.setShift(shift);
 ```
+追加した後のシフトデータを全て返します
 
 #### 消去
 使用例として、JavaScript上で
@@ -233,8 +236,9 @@ const newShift = {
 };
 const shift = shiftRepository.updateShift(newShift);
 ```
-
 これを行うと重複したIdのデータが会ったときに古い方のIdのデータを新しいデータに更新する
+返り値として更新後の全てのデータを返します。
+
 ## 1.4 設定のデータを扱う方法
 
 ### ファイルを読み込む方法
@@ -255,7 +259,13 @@ const shift = shiftRepository.updateShift(newShift);
 const jobRepository = new JobRepository();
 const job = jobRepository.getJob();
 ```
-このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
+```json
+{
+    "jobname": "ファミリーマート",
+    "payday": 15,
+    "price": 1000
+}
+```
 
 
 #### 追加
@@ -265,17 +275,19 @@ const jobRepository = new JobRepository();
 
 const job = {
 jobname: 'ファミリーマート',
-date: new Date(2021, 3, 15),
+payday: 15,
 price: 1000,
 };
 
 jobRepository.setJob(job);
 ```
+最新の設定のデータを返します
 年の記述に関しては自由で、Dateの関係上必要だけど、特に見ていない
+
 #### 消去
 使用例として、JavaScript上で
 ```js
 const jobRepository = new JobRepository();
 jobRepository.deleteJob();
 ```
-
+最新の設定のデータを返します
