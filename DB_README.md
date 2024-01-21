@@ -32,7 +32,7 @@ setTimeout(main, 100);
 使用例として、JavaScript上で全体を取得する場合は
 ```js
 const outgoRepository = new OutgoRepository();
-const outgo = outgoRepository.getOutgoList();
+const outgoAllList = outgoRepository.getOutgoList();
 ```
 
 id毎にデータを取得するためには
@@ -94,7 +94,7 @@ const outgoList = outgoRepository.setOutgo(outgo);
 const outgoRepository = new OutgoRepository();
 const id = 0;
 //outgo はデリートしたいidを入力します
-outgoRepository.deleteOutgo(id);
+const outgo = outgoRepository.deleteOutgo(id);
 ```
 これの返り値では削除された後のリストを全て返します
 
@@ -155,7 +155,7 @@ const outgo = outgoRepository.updateOutgo(newOutgo);
 使用例として、JavaScript上で全体のデータを取得したい場合は
 ```js
 const shiftRepository = new ShiftRepository();
-const shift = shiftRepository.getShiftList();
+const shiftAllList = shiftRepository.getShiftList();
 ```
 
 id毎にデータを取得するためには
@@ -280,7 +280,7 @@ payday: 15,
 price: 1000,
 };
 
-jobRepository.setJob(job);
+const job = jobRepository.setJob(job);
 ```
 最新の設定のデータを返します
 
@@ -288,6 +288,6 @@ jobRepository.setJob(job);
 使用例として、JavaScript上で
 ```js
 const jobRepository = new JobRepository();
-jobRepository.deleteJob();
+const job = jobRepository.deleteJob();
 ```
 最新の設定のデータを返します
