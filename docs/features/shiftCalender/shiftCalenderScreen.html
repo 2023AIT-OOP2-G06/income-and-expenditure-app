@@ -21,6 +21,18 @@
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
 
+        <!--=============== DB用、ここだけTypeScriptを使わせてもらっています。みんなもTSを使ってもいいよ。 ===============-->
+        <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftApi.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftEntity.ts"></script>
+        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftRepository.ts"></script> 
+
+        <!--=============== JS ===============-->
+        <!-- <script type="text/babel" data-presets="typescript" src="./js/ShiftMain.ts"></script> -->
+
+        <script src="./js/shiftCalenderMain.js"></script>
+
     <title>シフト管理カレンダー</title>
     <link rel="stylesheet" href="css/shiftCalenderStayle.css">
 </head>
