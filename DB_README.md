@@ -5,303 +5,166 @@
 
 ### ファイルを読み込む方法
 ```html
-        <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoApi.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoEntity.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoRepository.ts"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoApi.ts"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoEntity.ts"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoRepository.ts"></script>
 ```
 と最初入力することでインポートされデータベースが使えるようになる
 
 ### データの扱いかた
 
 #### 取得
-
-使用例として、JavaScript上で
+使用例として、JavaScript上で全体を取得する場合は
 ```js
-getOutgo(){
-    const outgoRepository = new OutgoRepository();
-        const outgo = outgoRepository.getOutgoList();
-        console.log(outgo);
-}:
+const outgoRepository = new OutgoRepository();
+const outgo = outgoRepository.getOutgoList();
 ```
-このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
-```html
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            onclick="
-                const outgoMain = new OutgoMain();
-                outgoMain.getOutgo();
-            "
-        >
-            全ての支出を表示
-        </button>
+
+id毎にデータを取得するためには
+```js
+const outgoRepository = new OutgoRepository();
+const outgo = outgoRepository.getOutgo(o);
 ```
-HTML上ではこのようにすることでボタンを押すとログ上にローカルストレージ上のカレンダーが取得される
+
 
 また月ごとに取得するためには
 ```js
-getShiftMonthAll(){
-        const shiftRepository = new ShiftRepository();
-        const shiftMonthAll = shiftRepository.getShiftMonthAll(2021, 3);
-        console.log(shiftMonthAll);
-    }
+const outgoRepository = new OutgoRepository();
+const outgoMonthAll = outgoRepository.getOutgoMonthAll(2021, 3);
 ```
-```html
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            onclick="
-                const outgoMain = new OutgoMain();
-                outgoMain.getOutgoMonthAll();
-            "
-        >
-            今月の支出を表示
-        </button>
-```
-とする
 
 #### 追加
-
 使用例として、JavaScript上で
 ```js
-    setOutgo(){
-        const outgoRepository = new OutgoRepository();
+const outgoRepository = new OutgoRepository();
 
-        const outgo = {
-            id: 0,
-            // 来月に変更する
-            date: new Date(2021, 3, 1),
-            price: 1000,
-        };
+const outgo = {
+    id: 0,
+    //IDは自動で増えていくため初期値ば0になる
+    date: new Date(2021, 3, 1),
+    price: 1000,
+};
 
-        const outgoList = outgoRepository.setOutgo(outgo);
-        console.log(outgoList);
-    }
+const outgoList = outgoRepository.setOutgo(outgo);
 ```
-このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
-```html
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            onclick="
-                const shiftMain = new ShiftMain();
-                shiftMain.getShift();
-            "
-        >
-            カレンダーを確認
-        </button>
-
-```
-HTML上ではこのようにすることでボタンを押すとログ上にローカルストレージ上のカレンダーが追加される
 
 #### 消去
 使用例として、JavaScript上で
 ```js
-deleteOutgo(){
-
-    const outgoMain = new OutgoRepository();
-    OutgoMain.deleteJob(outgo);
-    console.log(outgo);
-}
+const outgoMain = new OutgoRepository();
+const outgo = 0;
+//outgo はデリートしたいidを入力します
+OutgoMain.deleteOutgo(outgo);
 ```
-このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
-```html
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            onclick="
-                const outgoMain = new OutgoMain();
-                shiftMain.deleteOutgo();
-            "
-        >
-            支出を削除
-        </button>
-```
-HTML上ではこのようにすることでボタンを押すとログ上にローカルストレージ上の設定が削除される
 
 #### 更新
 
 使用例として、JavaScript上で
 ```js
-updateOutgo(){
-    const OutgoMain = new OutgoRepository();
-    const outgo = OutgoMain.UpdateOutgo();
-    console.log(shift);
-};
+const OutgoMain = new OutgoRepository();
+const outgo = OutgoMain.UpdateOutgo(2);//id2のデータを更新します
 ```
-このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
-```html
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            onclick="
-                const outgoMain = new OutgoMain();
-                outgoMain.updateOutgo();
-            "
-        >
-            支出を更新
-        </button>
-```
-HTML上ではこのようにすることでボタンを押すとログ上にローカルストレージ上のカレンダーが取得される
 
 ## 1.2 収支のデータを扱う方法
 
 ### ファイルを読み込む方法
 ```html
-        <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftApi.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftEntity.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftRepository.ts"></script> 
+<script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftApi.ts"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftEntity.ts"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftRepository.ts"></script> 
 
-        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoApi.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoEntity.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoRepository.ts"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoApi.ts"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoEntity.ts"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoRepository.ts"></script>
 
-        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobApi.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobEntity.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobRepository.ts"></script> 
+<script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobApi.ts"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobEntity.ts"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobRepository.ts"></script> 
 ```
 と最初入力することでインポートされデータベースが使えるようになる。
 収支管理は全てのデータベースを使用する
 
 ### データの扱いかた
 基本的に他の三つのものと変わらない。
-全てを使用しつつつ取得したものを組み合わ背て表示をさせる必要がある。
+全てを使用しつつ取得したものを組み合わせて表示をさせる必要がある。
 
 ## 1.3 シフトデータを扱う方法
 
 ### ファイルを読み込む方法
 ```html
-        <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftApi.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftEntity.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftRepository.ts"></script> 
+<script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftApi.ts"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftEntity.ts"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftRepository.ts"></script> 
 ```
 
 ### データの扱いかた
 
 #### 取得
-使用例として、JavaScript上で
+使用例として、JavaScript上で全体のデータを取得したい場合は
 ```js
-getShift(){
-    const shiftRepository = new ShiftRepository();
-    const shift = shiftRepository.getShiftList();
-    console.log(shift);
-};
+const shiftRepository = new ShiftRepository();
+const shift = shiftRepository.getShiftList();
 ```
-このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
-```html
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            onclick="
-                const shiftMain = new ShiftMain();
-                shiftMain.setShift();
-            "
-        >
-            カレンダーを追加
-        </button>
+
+id毎にデータを取得するためには
+```js
+const shiftRepository = new ShiftRepository();
+const shift = shiftRepository.getShift(o);
 ```
-HTML上ではこのようにすることでボタンを押すとログ上にローカルストレージ上のカレンダーが取得される
 
 また月ごとに取得するためには
 ```js
-getShiftMonthAll(){
-        const shiftRepository = new ShiftRepository();
-        const shiftMonthAll = shiftRepository.getShiftMonthAll(2021, 3);
-        console.log(shiftMonthAll);
-    }
+const shiftRepository = new ShiftRepository();
+const shiftMonthAll = shiftRepository.getShiftMonthAll(2021, 3);
 ```
-```html
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            onclick="
-                const shiftMain = new ShiftMain();
-                shiftMain.getShiftMonthAll();
-            "
-        >
-            シフトを月で取得
-        </button>
-```
-とする
-
 
 #### 追加
 使用例として、JavaScript上で
 ```js
-    setShift(){
-        const shiftRepository = new ShiftRepository();
+const shiftRepository = new ShiftRepository();
 
-        const shift = {
-            id: 0,
-            // 来月に変更する
-            date: new Date(2021, 3, 1),
-            time: 3,
-        };
+const shift = {
+    id: 0,
+    // Idは自動で更新されるのでここでは初期値の0
+    date: new Date(2021, 3, 1),
+    time: 3,
+};
 
-        const shiftList = shiftRepository.setShift(shift);
-        console.log(shiftList);
-    }
+const shiftList = shiftRepository.setShift(shift);
 ```
-このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
-```html
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            onclick="
-                const shiftMain = new ShiftMain();
-                shiftMain.getShift();
-            "
-        >
-            カレンダーを確認
-        </button>
 
-```
-HTML上ではこのようにすることでボタンを押すとログ上にローカルストレージ上のカレンダーが追加される
 #### 消去
 使用例として、JavaScript上で
 ```js
-deleteShift(){
-
-    const shiftRepository = new ShiftRepository();
-    jobRepository.deleteJob(job);
-    console.log(job);
-}
+const shiftRepository = new ShiftRepository();
+const id = 0;
+//idが０の部分をデリートします
+shiftRepository.deleteShift(id);
 ```
-このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
-```html
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            onclick="
-                const shiftMain = new ShiftMain();
-                shiftMain.deleteShift();
-            "
-        >
-            カレンダーを削除
-        </button>
-```
-HTML上ではこのようにすることでボタンを押すとログ上にローカルストレージ上の設定が削除される
-
 #### 更新
 
 使用例として、JavaScript上で
 ```js
-updateShift(){
-    const shiftRepository = new ShiftRepository();
-    const shift = shiftRepository.UpdateShift();
-    console.log(shift);
-};
+const shiftRepository = new ShiftRepository();
+const shift = shiftRepository.UpdateShift(1);//id1の部分を更新します
 ```
-このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
-```html
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            onclick="
-                const shiftMain = new ShiftMain();
-                shiftMain.updateShift();
-            "
-        >
-            カレンダーを更新
-        </button>
-```
-HTML上ではこのようにすることでボタンを押すとログ上にローカルストレージ上のカレンダーが取得される
+
 
 ## 1.4 設定のデータを扱う方法
 
 ### ファイルを読み込む方法
 ```html
-        <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobApi.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobEntity.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobRepository.ts"></script> 
+<script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobApi.ts"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobEntity.ts"></script>
+<script type="text/babel" data-presets="typescript" src="../../DB/jobData/JobRepository.ts"></script> 
 ```
 と最初入力することでインポートされデータベースが使えるようになる
 
@@ -310,81 +173,31 @@ HTML上ではこのようにすることでボタンを押すとログ上にロ�
 #### 取得
 使用例として、JavaScript上で
 ```js
-getJob(){
 const jobRepository = new JobRepository();
 const job = jobRepository.getJob();
-console.log(job);
-};
 ```
 このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
-```html
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-    onclick="
-        const jobSettingMain = new JobSettingMain();
-        jobSettingMain.getJob();
-    "
->
-    設定を確認
-</button>
-```
-HTML上ではこのようにすることでボタンを押すとログ上にローカルストレージ上の設定が表示される
+
 
 #### 追加
 使用例として、JavaScript上で
 ```js
-setJob(){
+const jobRepository = new JobRepository();
 
-    const jobRepository = new JobRepository();
+const job = {
+jobname: 'ファミリーマート',
+date: new Date(2021, 3, 15),
+price: 1000,
+};
 
-    const job = {
-        jobname: 'ファミリーマート',
-        // 来月に変更する
-        date: new Date(2021, 3, 15),
-        price: 1000,
-    };
-    
-    console.log(job);
-
-    jobRepository.setJob(job);
-
-}
+jobRepository.setJob(job);
 ```
-このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
-```html
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-        onclick="
-            const jobSettingMain = new JobSettingMain();
-            jobSettingMain.setJob();
-        "
-    >
-        設定を追加
-    </button>
-
-```
-HTML上ではこのようにすることでボタンを押すとログ上にローカルストレージ上の設定が追加される
 
 #### 消去
 使用例として、JavaScript上で
 ```js
-deleteJob(){
-
-    const jobRepository = new JobRepository();
-    jobRepository.deleteJob(job);
-    console.log(job);
-}
+const jobRepository = new JobRepository();
+jobRepository.deleteJob(job);
 ```
-このようにすることでHTMLで使用でき、ログをコンソールで確認できるようにして
-```html
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-        onclick="
-            const jobSettingMain = new JobSettingMain();
-            jobSettingMain.deleteJob();
-        "
-    >
-        設定を削除
-    </button>
-
-```
-HTML上ではこのようにすることでボタンを押すとログ上にローカルストレージ上の設定が削除される
 
 
