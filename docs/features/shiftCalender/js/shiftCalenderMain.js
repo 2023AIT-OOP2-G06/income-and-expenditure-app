@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(day)
       console.log(formatDate(day));
       console.log(typeof(formatDate(day)))
-      modalDateDisplay.value = formatDate(day);
+      modalDateDisplay.textContent = formatDate(day);
   
       numberInputModal.dataset.date = date;
       numberInputModal.dataset.month = month;
