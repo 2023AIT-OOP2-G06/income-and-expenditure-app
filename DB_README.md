@@ -5,10 +5,11 @@
 
 ```js
 function main() {
-  console.log('動いたよ！！');
+  const outgoRepository = new OutgoRepository();
+  const outgo = outgoRepository.getOutgo(0);
 }
 
-// 大体 ３ 秒後に main 関数が動き出す
+// 大体 100ミリ秒後に main 関数が動き出す
 setTimeout(main, 100);
 ```
 
@@ -46,7 +47,6 @@ const outgo = outgoRepository.getOutgo(0);
 const outgoRepository = new OutgoRepository();
 const outgoMonthAll = outgoRepository.getOutgoMonthAll(2021, 3);
 ```
-
 ```json
 {
     date: "2021-03-31T15:00:00.000Z"
