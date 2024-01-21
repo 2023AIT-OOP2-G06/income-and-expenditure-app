@@ -1,6 +1,18 @@
 # 1.DBの扱い方
 関数を使用するときにDBで製作した関数を使用することでローカルストレージに保存をすることが可能になります。
 
+ページの読み込みが早いとが早いとtsを使用している関係上エラーが起こるためレポジトリが読み取れなくなります。
+
+```js
+function main() {
+  console.log('動いたよ！！');
+}
+
+// 大体 ３ 秒後に main 関数が動き出す
+setTimeout(main, 100);
+```
+
+このように少し遅らせるようにすると解消されます
 ## 1.1 支出のデータを扱う方法
 
 ### ファイルを読み込む方法
@@ -25,7 +37,7 @@ const outgo = outgoRepository.getOutgoList();
 id毎にデータを取得するためには
 ```js
 const outgoRepository = new OutgoRepository();
-const outgo = outgoRepository.getOutgo(o);
+const outgo = outgoRepository.getOutgo(0);
 ```
 
 
@@ -35,6 +47,14 @@ const outgoRepository = new OutgoRepository();
 const outgoMonthAll = outgoRepository.getOutgoMonthAll(2021, 3);
 ```
 
+```json
+{
+    date: "2021-03-31T15:00:00.000Z"
+    id: 0
+    moment: "2021-04-01T03:00:00.000Z"
+    time: 3
+}
+```
 #### 追加
 使用例として、JavaScript上で
 ```js
@@ -42,7 +62,7 @@ const outgoRepository = new OutgoRepository();
 
 const outgo = {
     id: 0,
-    //IDは自動で増えていくため初期値ば0になる
+    //IDは自動で増えていくため初期値は0でもよい
     date: new Date(2021, 3, 1),
     price: 1000,
 };
@@ -54,9 +74,9 @@ const outgoList = outgoRepository.setOutgo(outgo);
 使用例として、JavaScript上で
 ```js
 const outgoMain = new OutgoRepository();
-const outgo = 0;
+const id = 0;
 //outgo はデリートしたいidを入力します
-OutgoMain.deleteOutgo(outgo);
+OutgoMain.deleteOutgo(id);
 ```
 
 #### 更新
@@ -64,9 +84,10 @@ OutgoMain.deleteOutgo(outgo);
 使用例として、JavaScript上で
 ```js
 const OutgoMain = new OutgoRepository();
-const outgo = OutgoMain.UpdateOutgo(2);//id2のデータを更新します
+const outgo = OutgoMain.UpdateOutgo();
 ```
 
+これを行うと重複したIdのデータが会ったときに古い方のIdのデータを新しいデータに更新する
 ## 1.2 収支のデータを扱う方法
 
 ### ファイルを読み込む方法
@@ -115,7 +136,8 @@ const shift = shiftRepository.getShiftList();
 id毎にデータを取得するためには
 ```js
 const shiftRepository = new ShiftRepository();
-const shift = shiftRepository.getShift(o);
+const id = 0;
+const shift = shiftRepository.getShift(id);
 ```
 
 また月ごとに取得するためには
@@ -152,10 +174,10 @@ shiftRepository.deleteShift(id);
 使用例として、JavaScript上で
 ```js
 const shiftRepository = new ShiftRepository();
-const shift = shiftRepository.UpdateShift(1);//id1の部分を更新します
+const shift = shiftRepository.UpdateShift();
 ```
 
-
+これを行うと重複したIdのデータが会ったときに古い方のIdのデータを新しいデータに更新する
 ## 1.4 設定のデータを扱う方法
 
 ### ファイルを読み込む方法
@@ -192,12 +214,13 @@ price: 1000,
 
 jobRepository.setJob(job);
 ```
-
+年の記述に関しては自由で、Dateの関係上必要だけど、特に見ていない
 #### 消去
 使用例として、JavaScript上で
 ```js
 const jobRepository = new JobRepository();
-jobRepository.deleteJob(job);
+const id = 0;
+jobRepository.deleteJob(id);
 ```
-
+削除したいidをidに設定します
 
