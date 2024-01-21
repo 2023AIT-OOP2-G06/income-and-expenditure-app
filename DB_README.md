@@ -1,7 +1,7 @@
 # 1.DBの扱い方
 関数を使用するときにDBで製作した関数を使用することでローカルストレージに保存をすることが可能になります。
 
-ページの読み込みが早いとが早いとtsを使用している関係上エラーが起こるためレポジトリが読み取れなくなります。
+ページの読み込みと同時にDBを使用するとTSを使用しているため、JSに変換が瞬時に行われずRepositoryが読み取れないためエラーが起こります。
 
 ```js
 function main() {
@@ -24,7 +24,7 @@ setTimeout(main, 100);
 <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoEntity.ts"></script>
 <script type="text/babel" data-presets="typescript" src="../../DB/outgoData/OutgoRepository.ts"></script>
 ```
-と最初入力することでインポートされデータベースが使えるようになる
+と最初に入力することでインポートされデータベースが使えるようになる
 
 ### データの扱いかた
 
@@ -47,7 +47,7 @@ const outgo = outgoRepository.getOutgo(0);
 const outgoRepository = new OutgoRepository();
 const outgoMonthAll = outgoRepository.getOutgoMonthAll(2021, 3);
 ```
-月ごとにデータを取得するとjsonファイルはこうなります
+月ごとにデータを取得するとobject型の中身はこうなります
 ```json
 [
     {
@@ -86,7 +86,7 @@ const outgo = {
 
 const outgoList = outgoRepository.setOutgo(outgo);
 ```
-これを行うことにとって支出データの最新のデータ全てを返します
+これを行うことによって支出データの最新のデータ全てを返します
 
 #### 消去
 使用例として、JavaScript上で
@@ -170,7 +170,7 @@ const shift = shiftRepository.getShift(id);
 const shiftRepository = new ShiftRepository();
 const shiftMonthAll = shiftRepository.getShiftMonthAll(2021, 3);
 ```
-月ごとにデータを取得するとjsonファイルはこうなります
+月ごとにデータを取得するとobject型の中身はこうなります
 ```json
 [
     {
@@ -236,7 +236,7 @@ const newShift = {
 };
 const shift = shiftRepository.updateShift(newShift);
 ```
-これを行うと重複したIdのデータが会ったときに古い方のIdのデータを新しいデータに更新する
+これを行うと重複したIdのデータがあったときに古い方のIdのデータを新しいデータに更新する
 返り値として更新後の全てのデータを返します。
 
 ## 1.4 設定のデータを扱う方法
@@ -259,6 +259,7 @@ const shift = shiftRepository.updateShift(newShift);
 const jobRepository = new JobRepository();
 const job = jobRepository.getJob();
 ```
+これを行なって帰ってくるデータはこのような形になります
 ```json
 {
     "jobname": "ファミリーマート",
@@ -282,7 +283,6 @@ price: 1000,
 jobRepository.setJob(job);
 ```
 最新の設定のデータを返します
-年の記述に関しては自由で、Dateの関係上必要だけど、特に見ていない
 
 #### 消去
 使用例として、JavaScript上で
