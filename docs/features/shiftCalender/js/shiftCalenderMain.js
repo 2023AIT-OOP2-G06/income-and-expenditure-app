@@ -15,8 +15,6 @@ class ShiftMain {
             time: 3,
         };
 
-        console.log("JS setShift" + shift.date)
-
         const shiftList = shiftRepository.setShift(shift);
         console.log(shiftList);
     }

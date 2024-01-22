@@ -17,10 +17,6 @@ class ShiftApi {
             return value;
          });
 
-        console.log(shiftList)
-
-        console.log(shiftListString)
-
         localStorage.setItem(this.key, shiftListString);
     }
 
