@@ -1,4 +1,5 @@
 # 1.DBの扱い方
+# データベースをページのロードと同時に使う際の注意点
 関数を使用するときにDBで製作した関数を使用することでローカルストレージに保存をすることが可能になります。
 
 ページの読み込みと同時にDBを使用するとTSを使用しているため、JSに変換が瞬時に行われずRepositoryが読み取れないためエラーが起こります。
@@ -12,8 +13,32 @@ function main() {
 // 大体 100ミリ秒後に main 関数が動き出す
 setTimeout(main, 100);
 ```
-
 このように少し遅らせるようにすると解消されます
+
+# Date型の設定上の月の表し方に関する注意点
+Date型の仕様上月は0から始まっています
+```js
+const shift = {
+    id: 0,
+    // Idは自動で更新されるのでここでは初期値の0
+    date: new Date(2021, 3, 1),
+    time: 3,
+};
+```
+このように入力したデータは
+```json
+{
+    "id": 0,
+    "date": "Thu Apr 01 2021 00:00:00 GMT+0900 (日本標準時)",
+    "time": 3
+},
+```
+このように4月として返ります
+
+詳しくはこちら
+![](./ReadmeImage/Date.png)
+https://www.tohoho-web.com/js/date.htm
+
 ## 1.1 支出のデータを扱う方法
 
 ### ファイルを読み込む方法
@@ -40,7 +65,6 @@ id毎にデータを取得するためには
 const outgoRepository = new OutgoRepository();
 const outgo = outgoRepository.getOutgo(0);
 ```
-
 
 また月ごとに取得するためには
 ```js
@@ -72,13 +96,6 @@ const outgoMonthAll = outgoRepository.getOutgoMonthAll(2021, 3);
     }
 ]
 ```
-
-また日ごとに取得するためには
-```js
-const outgoRepository = new OutgoRepository();
-const outgoDayAll = outgoRepository.getOutgoDayAll(2021, 3, 2);
-```
-
 
 #### 追加
 使用例として、JavaScript上で
@@ -183,30 +200,34 @@ const shiftMonthAll = shiftRepository.getShiftMonthAll(2021, 3);
 [
     {
         "id": 0,
-        "date": "2021-03-31T15:00:00.000Z",
-        "moment": "2021-04-01T03:00:00.000Z",
+        "date": "Thu Apr 01 2021 00:00:00 GMT+0900 (日本標準時)",
         "time": 3
     },
     {
         "id": 1,
-        "date": "2021-03-31T15:00:00.000Z",
-        "moment": "2021-04-01T03:00:00.000Z",
+        "date": "Thu Apr 01 2021 00:00:00 GMT+0900 (日本標準時)",
         "time": 3
     },
     {
         "id": 2,
-        "date": "2021-03-31T15:00:00.000Z",
-        "moment": "2021-04-01T03:00:00.000Z",
+        "date": "Thu Apr 01 2021 00:00:00 GMT+0900 (日本標準時)",
         "time": 3
     },
     {
         "id": 3,
-        "date": "2021-03-31T15:00:00.000Z",
-        "moment": "2021-04-01T03:00:00.000Z",
+        "date": "Thu Apr 01 2021 00:00:00 GMT+0900 (日本標準時)",
         "time": 3
     }
 ]
 ```
+
+また日ごとに取得するためには
+```js
+const shiftRepository = new ShiftRepository();
+const shiftDayAll = shiftRepository.getShiftDayAll(2021, 3, 2);
+```
+Date型の仕様上月は0から始まっています。
+注意してコードを書いてください
 
 #### 追加
 使用例として、JavaScript上で

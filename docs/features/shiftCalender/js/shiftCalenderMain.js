@@ -11,9 +11,11 @@ class ShiftMain {
         const shift = {
             id: 0,
             // 来月に変更する
-            date: new Date(2021, 3, 2),
+            date: new Date(2021, 3,1),
             time: 3,
         };
+
+        console.log("JS setShift" + shift.date)
 
         const shiftList = shiftRepository.setShift(shift);
         console.log(shiftList);
@@ -29,5 +31,10 @@ class ShiftMain {
         const shiftRepository = new ShiftRepository();
         const shiftDayAll = shiftRepository.getShiftDayAll(2021, 3,2);
         console.log(shiftDayAll);
+    }
+
+    deleteShiftList(){
+        const shiftRepository = new ShiftRepository();
+        shiftRepository.deleteShiftList();
     }
 }

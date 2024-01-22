@@ -100,6 +100,8 @@ class ShiftRepository {
         const lastShift = shiftList[shiftList.length - 1];
         shift.id = lastShift ? lastShift.id + 1 : 0;
 
+        console.log("TS setShift" + shift.date)
+
         // 取得したListの最後に追加する
         shiftList.push(shift);
         // DBに上書き保存をする

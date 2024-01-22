@@ -10,7 +10,16 @@ class ShiftApi {
             (x, y) => (new Date(x.date).getTime()) - (new Date(y.date).getTime()),
         )
 
-        const shiftListString = JSON.stringify(shiftList);
+        const shiftListString = JSON.stringify(shiftList ,function(key, value) {
+            if (this[key] instanceof Date) {
+               return this[key].toString();
+            }
+            return value;
+         });
+
+        console.log(shiftList)
+
+        console.log(shiftListString)
 
         localStorage.setItem(this.key, shiftListString);
     }
