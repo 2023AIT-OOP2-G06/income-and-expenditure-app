@@ -198,7 +198,7 @@ https://github.com/bedimcode/responsive-bottom-navigation
 ## DBについて
 
 詳しい仕様書(使い方のみを書いたドキュメント)については別の場所に書きます。
-![DBの扱い方のリンク](./DB_README.md)を見てもらうことで理解ができると思います。
+[DBの扱い方のリンク](./DB_README.md)を見てもらうことで理解ができると思います。
 DBの実装をする方は以下の資料の確認をしてもらえるといいと思います。
 
 ### TypeScriptについて
