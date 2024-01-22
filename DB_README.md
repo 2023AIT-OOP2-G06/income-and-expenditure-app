@@ -123,6 +123,12 @@ const outgoList = outgoRepository.deleteOutgo(id);
 ```
 これの返り値では削除された後のリストを全て返します
 
+データの全消去は
+```js
+const outgoRepository = new OutgoRepository();
+outgoRepository.deleteOutgoList();
+```
+
 #### 更新
 
 使用例として、JavaScript上で
@@ -252,6 +258,12 @@ const shiftRepository = new ShiftRepository();
 const id = 0;
 //idが０の部分をデリートします
 const shiftList = shiftRepository.deleteShift(id);
+```
+
+データの全消去は
+```js
+const shiftRepository = new ShiftRepository();
+shiftRepository.deleteShiftList();
 ```
 #### 更新
 
