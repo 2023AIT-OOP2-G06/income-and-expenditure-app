@@ -12,7 +12,7 @@ class ShiftApi {
 
         const shiftListString = JSON.stringify(shiftList ,function(key, value) {
             if (this[key] instanceof Date) {
-               return this[key].toString();
+               return this[key].toLocaleString("ja");
             }
             return value;
          });

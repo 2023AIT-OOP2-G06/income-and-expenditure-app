@@ -12,7 +12,7 @@ class OutgoApi {
 
         const outgoListString = JSON.stringify(outgoList ,function(key, value) {
             if (this[key] instanceof Date) {
-               return this[key].toString();
+               return this[key].ttoLocaleString("ja");
             }
             return value;
          });

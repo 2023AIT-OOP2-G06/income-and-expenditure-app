@@ -29,7 +29,7 @@ const shift = {
 ```json
 {
     "id": 0,
-    "date": "Thu Apr 01 2021 00:00:00 GMT+0900 (日本標準時)",
+    "date": "2021/4/1 0:00:00",
     "time": 3
 },
 ```
@@ -76,22 +76,22 @@ const outgoMonthAll = outgoRepository.getOutgoMonthAll(2021, 3);
 [
     {
         "id": 0,
-        "date": "Thu Apr 01 2021 00:00:00 GMT+0900 (日本標準時)",
+        "date": "2021/4/1 0:00:00",
         "price": 1000
     },
     {
         "id": 1,
-        "date": "Thu Apr 01 2021 00:00:00 GMT+0900 (日本標準時)",
+        "date": "2021/4/1 0:00:00",
         "price": 1000
     },
     {
         "id": 2,
-        "date": "Thu Apr 01 2021 00:00:00 GMT+0900 (日本標準時)",
+        "date": "2021/4/1 0:00:00",
         "price": 1000
     },
     {
         "id": 3,
-        "date": "Thu Apr 01 2021 00:00:00 GMT+0900 (日本標準時)",
+        "date": "2021/4/1 0:00:00",
         "price": 1000
     }
 ]
@@ -200,22 +200,22 @@ const shiftMonthAll = shiftRepository.getShiftMonthAll(2021, 3);
 [
     {
         "id": 0,
-        "date": "Thu Apr 01 2021 00:00:00 GMT+0900 (日本標準時)",
+        "date": "2021/4/1 0:00:00",
         "time": 3
     },
     {
         "id": 1,
-        "date": "Thu Apr 01 2021 00:00:00 GMT+0900 (日本標準時)",
+        "date": "2021/4/1 0:00:00",
         "time": 3
     },
     {
         "id": 2,
-        "date": "Thu Apr 01 2021 00:00:00 GMT+0900 (日本標準時)",
+        "date": "2021/4/1 0:00:00",
         "time": 3
     },
     {
         "id": 3,
-        "date": "Thu Apr 01 2021 00:00:00 GMT+0900 (日本標準時)",
+        "date": "2021/4/1 0:00:00",
         "time": 3
     }
 ]
