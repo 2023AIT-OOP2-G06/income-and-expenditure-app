@@ -14,7 +14,7 @@ class OutgoMain {
             newLi.classList.add('list-group-item');
             const newDate = document.createElement('div');
             // dateの表示を年月日に限定
-            const spStr = element.date.split('T');
+            const spStr = element.date.split(' ');
             newDate.innerText = spStr[0];
             newLi.appendChild(newDate);
             const newPrice = document.createElement('div');
@@ -51,8 +51,8 @@ class OutgoMain {
 
             const outgo = {
                 id: 0,
-                // 今月に調整->strDate[1]-1、今日に調整->strDate[2]+1
-                date: new Date(Number(strDate[0]), Number(strDate[1])-1, Number(strDate[2])+1),
+                // 月の調整->strDate[1]-1
+                date: new Date(Number(strDate[0]), Number(strDate[1])-1, Number(strDate[2])),
                 price: Number(valPrice),
             };
     
@@ -84,7 +84,7 @@ class OutgoMain {
             newLi.classList.add('list-group-item');
             const newDate = document.createElement('div');
             // dateの表示を年月日に限定
-            const spStr = element.date.split('T');
+            const spStr = element.date.split(' ');
             newDate.innerText = spStr[0];
             newLi.appendChild(newDate);
             const newPrice = document.createElement('div');
