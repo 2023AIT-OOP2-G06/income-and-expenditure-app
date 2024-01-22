@@ -33,41 +33,44 @@
 
         <form>
             <div class="mb-3">
-              <label class="form-label">日付</label>
-              <input type="date" class="form-control" id="new-date">
+                <label class="form-label">日付</label>
+                <input type="date" class="form-control" id="new-date">
             </div>
             <div class="mb-3">
-              <label class="form-label">金額</label>
-              <input type="number" class="form-control" id="new-price" placeholder="半角数字のみ">
+                <label class="form-label">金額</label>
+                <input type="number" class="form-control" id="new-price" placeholder="半角数字のみ">
+            </div>
+            <div align="center">
+                <button type="button" class="btn btn-primary" id="head-button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    onclick="
+                        const outgoMain = new OutgoMain();
+                        outgoMain.setOutgo();
+                    "
+                >
+                    支出を追加
+                </button>
             </div>
         </form>
 
-        <button type="button" class="btn btn-primary" id="head-button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            onclick="
-                const outgoMain = new OutgoMain();
-                outgoMain.setOutgo();
-            "
-        >
-            支出を追加
-        </button>
+        <div align="center">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                onclick="
+                    const outgoMain = new OutgoMain();
+                    outgoMain.getOutgo();
+                "
+            >
+                全ての支出を表示
+            </button>
 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            onclick="
-                const outgoMain = new OutgoMain();
-                outgoMain.getOutgo();
-            "
-        >
-            全ての支出を表示
-        </button>
-
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            onclick="
-                const outgoMain = new OutgoMain();
-                outgoMain.getOutgoMonthAll();
-            "
-        >
-            今月の支出を表示
-        </button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                onclick="
+                    const outgoMain = new OutgoMain();
+                    outgoMain.getOutgoMonthAll();
+                "
+            >
+                今月の支出を表示
+            </button>
+        </div>
 
         <ul class="list-group"></ul>
 

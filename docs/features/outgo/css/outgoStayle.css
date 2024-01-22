@@ -1,4 +1,4 @@
-div,ul{
+.mb-3,ul{
     margin-left: 5%;
     margin-right: 5%;
 }
@@ -9,7 +9,7 @@ div,ul{
     font-family: "YuMincho";
 }
 #head-button{
-    margin-left: 5%;
+    margin-bottom: 10px;
 }
 ul{
     margin-top: 20px;
