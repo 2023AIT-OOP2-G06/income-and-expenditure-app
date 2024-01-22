@@ -72,6 +72,14 @@ const outgoMonthAll = outgoRepository.getOutgoMonthAll(2021, 3);
     }
 ]
 ```
+
+また日ごとに取得するためには
+```js
+const outgoRepository = new OutgoRepository();
+const outgoDayAll = outgoRepository.getOutgoDayAll(2021, 3, 2);
+```
+
+
 #### 追加
 使用例として、JavaScript上で
 ```js
