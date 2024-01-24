@@ -2,8 +2,11 @@
 // 現在の年月を管理する変数
 var currentYearMonth = new Date();
 
+//----ー扶養欄の働いた金額----ー
+var fuyo_worked = 0;
+
 //----ー扶養欄の残り金額----ー
-var fuyo_value =1030000;
+var fuyo_value = 1030000;
 
 const jobRepository = new JobRepository();
 const job = jobRepository.getJob();
@@ -20,7 +23,7 @@ function updateCurrentDate() {
 
 // ボタンで月を変える関数
 function changeMonth(direction) {
-    if (direction === 'previous') {
+  if (direction === 'previous') {
     // 先月の日付に戻る
     currentYearMonth.setMonth(currentYearMonth.getMonth() - 1);
   } else if (direction === 'current') {
@@ -58,6 +61,7 @@ function updateData(outgoMonthAll, outgoyear, shiftMonthAll) {
     var total_out = outgoMonthAll.reduce((sum, item) => sum + (item.price || 0), 0); //支出欄の支出の合計
     var total_bop = in_worked - total_out;   //収支欄の収支の合計
 
+
   // HTMLに反映
   document.getElementById('fuyo_work_value').innerHTML =
     '働いた金額 : ' + fuyo_worked.toLocaleString() + '円';
@@ -70,14 +74,16 @@ function updateData(outgoMonthAll, outgoyear, shiftMonthAll) {
   document.getElementById('out_value').innerHTML =
     '支出の合計 : ' + total_out.toLocaleString() + '円';
   document.getElementById('bop_value').innerHTML =
-      '収支の合計 : ' + total_bop.toLocaleString() + '円';
-    
-    
+    '収支の合計 : ' + total_bop.toLocaleString() + '円';
+
   // グラフのパーセンテージを計算
-    var percentage = (fuyo_rest / fuyo_value) * 100;
-    
+  var percentage = (fuyo_rest / fuyo_value) * 100;
+
   // CSS変数に値をセット
-    document.documentElement.style.setProperty('--my-calculated-value', percentage + '%');
+  document.documentElement.style.setProperty(
+    '--my-calculated-value',
+    percentage + '%'
+  );
 }
 
 // 乱数を生成する関数 (仮のデータ生成用)
