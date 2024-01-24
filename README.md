@@ -4,6 +4,15 @@ outgo-and-expenditure-app
 # 概要
 シフト管理をすることでバイト収入と支払いをまとめてくれて、扶養を計算することができるアプリケーション
 
+# 実行方法
+HTTPサーバーを用いて`./docs/`をルートにしてindex.htmlを開くことで簡単に確認をすることができる
+
+VSCodeで開発されている場合は拡張機能GoLiveを用いて実行するとより簡単に実行することができます。
+
+![](./ReadmeImage/GoLive.png)
+
+ルートIndex: `./docs/index.html`
+
 # リリース情報
 
 このアプリケーションは、下記URLでリリースがされています。
@@ -189,7 +198,7 @@ https://github.com/bedimcode/responsive-bottom-navigation
 ## DBについて
 
 詳しい仕様書(使い方のみを書いたドキュメント)については別の場所に書きます。
-![DBの扱い方のリンク](./DB_README.md)を見てもらうことで理解ができると思います。
+[DBの扱い方のリンク](./DB_README.md)を見てもらうことで理解ができると思います。
 DBの実装をする方は以下の資料の確認をしてもらえるといいと思います。
 
 ### TypeScriptについて
@@ -442,12 +451,4 @@ https://www.youtube.com/watch?v=kcPBAysgPPg&ab_channel=徳田啓【プログラ�
 #### 公式ドキュメント
 https://getbootstrap.jp/docs/5.3/components/accordion/
 
-# 実行方法
-HTTPサーバーを用いて`./docs/`をルートにしてindex.htmlを開くことで簡単に確認をすることができる
-
-VSCodeで開発されている場合は拡張機能GoLiveを用いて実行するとより簡単に実行することができます。
-
-![](./ReadmeImage/GoLive.png)
-
-ルートIndex: `./docs/index.html`
 
