@@ -5,6 +5,10 @@ var currentYearMonth = new Date();
 //----ー扶養欄の残り金額----ー
 var fuyo_value =1030000;
 
+const jobRepository = new JobRepository();
+const job = jobRepository.getJob();
+const priceValue = job.price;
+
 
 // 年月を更新する関数
 function updateCurrentDate() {
@@ -36,18 +40,23 @@ function changeMonth(direction) {
   updateCurrentDate(); // 年月を更新
 }
 
-const jobRepository = new JobRepository();
-const job = jobRepository.getJob();
-const priceValue = job.price;
+
 // データを更新する関数 (適宜実際のデータ更新処理を追加)
-function updateData(outgoMonthAll,outgoyear,shiftMonthAll) {
-  // 仮のデータ更新処理
-  var fuyo_worked = outgoyear.reduce((sum, item) => sum + item.price, 0);     //扶養欄の働いた金額
-  var fuyo_rest = fuyo_value - fuyo_worked;//扶養欄の残った金額
-  var in_time = shiftMonthAll.reduce((sum, item) => sum + item.time, 0);  //収入欄の勤務時間
-  var in_worked = priceValue * in_time;       //収入欄の働いた金額      
-  var total_out = outgoMonthAll.reduce((sum, item) => sum + item.price, 0); //支出欄の支出の合計
-  var total_bop = in_worked - total_out;   //収支欄の収支の合計
+function updateData(outgoMonthAll, outgoyear, shiftMonthAll) {
+
+    outgoyear = outgoyear || [];
+    shiftMonthAll = shiftMonthAll || [];
+
+  // データ更新処理
+    var fuyo_worked = outgoyear.reduce((sum, item) => sum + (item.price || 0), 0);     //扶養欄の働いた金額
+    var fuyo_rest = fuyo_value - fuyo_worked;//扶養欄の残った金額
+    var in_time = shiftMonthAll.reduce((sum, item) => sum + (item.time || 0), 0);  //収入欄の勤務時間
+    var in_worked=0;
+    if (priceValue !== null) {
+        in_worked = priceValue * in_time;       //収入欄の働いた金額    
+    }      
+    var total_out = outgoMonthAll.reduce((sum, item) => sum + (item.price || 0), 0); //支出欄の支出の合計
+    var total_bop = in_worked - total_out;   //収支欄の収支の合計
 
   // HTMLに反映
   document.getElementById('fuyo_work_value').innerHTML =

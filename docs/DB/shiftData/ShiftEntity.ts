@@ -1,1 +1,5 @@
-//TODO:中身を作成する
+type ShiftModel = {
+    id: number;
+    date: Date;
+    working_hours : number;
+}

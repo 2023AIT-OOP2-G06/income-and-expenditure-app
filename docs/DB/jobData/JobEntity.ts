@@ -1,1 +1,5 @@
-//TODO:中身を作成する
+type JobModel = {
+    jobname: string;
+    payday: number;
+    price: number;
+}
