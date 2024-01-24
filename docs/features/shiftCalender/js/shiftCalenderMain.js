@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const shiftList = shiftRepository.setShift(shift);
 
-    console.log(selectYear);
+    console.log(selectYear.value);
     console.log(shiftList);
 
 
