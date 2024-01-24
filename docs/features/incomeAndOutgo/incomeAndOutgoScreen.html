@@ -102,6 +102,56 @@
     <!-- JavaScriptファイルのリンク -->
     <script src="../../features/incomeAndOutgo/js/incomeAndOutgoMain.js"></script>
 
+    <!-- DBファイルのリンク -->
+    <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/shiftData/ShiftApi.ts"
+    ></script>
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/shiftData/ShiftEntity.ts"
+    ></script>
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/shiftData/ShiftRepository.ts"
+    ></script>
+
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/outgoData/OutgoApi.ts"
+    ></script>
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/outgoData/OutgoEntity.ts"
+    ></script>
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/outgoData/OutgoRepository.ts"
+    ></script>
+
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/jobData/JobApi.ts"
+    ></script>
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/jobData/JobEntity.ts"
+    ></script>
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/jobData/JobRepository.ts"
+    ></script>
     <script>
       // ページ読み込み時に初期化
       window.onload = function () {

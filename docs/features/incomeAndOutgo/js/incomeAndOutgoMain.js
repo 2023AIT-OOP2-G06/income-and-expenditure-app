@@ -3,25 +3,11 @@
 var currentYearMonth = new Date();
 
 //----ー扶養欄の働いた金額----ー
-var fuyo_worked = 600000;
+var fuyo_worked ;
 
 //----ー扶養欄の残り金額----ー
-var fuyo_value = 1030000;
-var fuyo_rest = fuyo_value - fuyo_worked;
+var fuyo_value =1030000;
 
-//----ー収入欄の働いた金額----ー
-var in_worked = 60000;
-
-//----ー収入欄の勤務時間----ー
-var in_time = 60;
-
-//----ー支出欄----ー
-var out_value1 = 60000;
-var out_value2 = 10000;
-var total_out = out_value1 + out_value2;
-
-//----ー収支欄----ー
-var total_bop = in_worked - total_out;
 
 // 年月を更新する関数
 function updateCurrentDate() {
@@ -39,22 +25,28 @@ function changeMonth(direction) {
   } else if (direction === 'current') {
     // 来月の日付に進める
     currentYearMonth.setMonth(currentYearMonth.getMonth() + 1);
-  }
+    }
+    const outgoRepository = new OutgoRepository();
+    const outgoMonthAll = outgoRepository.getOutgoMonthAll(year, month);
+    const outgoYearAll = outgoRepository.getOutgoYearAll(year);
+    const shiftRepository = new ShiftRepository();
+    const shiftMonthAll = shiftRepository.getShiftMonthAll(year, month);
   updateData(); // データを更新
   updateCurrentDate(); // 年月を更新
 }
 
+const jobRepository = new JobRepository();
+const job = jobRepository.getJob();
+const priceValue = job.price;
 // データを更新する関数 (適宜実際のデータ更新処理を追加)
 function updateData() {
   // 仮のデータ更新処理
-  fuyo_worked = getRandomValue();      //扶養欄の働いた金額
-  fuyo_rest = fuyo_value - fuyo_worked;//扶養欄の残った金額
-  in_worked = getRandomValue();        //収入欄の働いた金額
-  in_time = getRandomValue();          //収入欄の勤務時間
-  out_value1 = getRandomValue();       //支出１
-  out_value2 = getRandomValue();       //支出２
-  total_out = out_value1 + out_value2; //支出欄の支出の合計
-  total_bop = in_worked - total_out;   //収支欄の収支の合計
+  var fuyo_worked = outgoYearAll.reduce((sum, item) => sum + item.price, 0);     //扶養欄の働いた金額
+  var fuyo_rest = fuyo_value - fuyo_worked;//扶養欄の残った金額
+  var in_time = shiftMonthAll.reduce((sum, item) => sum + item.time, 0);  //収入欄の勤務時間
+  var in_worked = priceValue * in_time;       //収入欄の働いた金額      
+  var total_out = outgoMonthAll.reduce((sum, item) => sum + item.price, 0); //支出欄の支出の合計
+  var total_bop = in_worked - total_out;   //収支欄の収支の合計
 
   // HTMLに反映
   document.getElementById('fuyo_work_value').innerHTML =
