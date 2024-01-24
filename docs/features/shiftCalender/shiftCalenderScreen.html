@@ -21,17 +21,17 @@
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
 
-        <!--=============== DB用、ここだけTypeScriptを使わせてもらっています。みんなもTSを使ってもいいよ。 ===============-->
-        <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftApi.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftEntity.ts"></script>
-        <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftRepository.ts"></script> 
+    <!--=============== DB用、ここだけTypeScriptを使わせてもらっています。みんなもTSを使ってもいいよ。 ===============-->
+    <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
+    <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftApi.ts"></script>
+    <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftEntity.ts"></script>
+    <script type="text/babel" data-presets="typescript" src="../../DB/shiftData/ShiftRepository.ts"></script>
 
-        <!--=============== JS ===============-->
-        <!-- <script type="text/babel" data-presets="typescript" src="./js/ShiftMain.ts"></script> -->
+    <!--=============== JS ===============-->
+    <!-- <script type="text/babel" data-presets="typescript" src="./js/ShiftMain.ts"></script> -->
 
-        <script src="./js/shiftCalenderMain.js"></script>
+    <script src="./js/shiftCalenderMain.js"></script>
 
     <title>シフト管理カレンダー</title>
     <link rel="stylesheet" href="css/shiftCalenderStayle.css">
@@ -57,40 +57,24 @@
                 <h5 id="monthAndYear"></h5>
                 <p style="text-align:center;">合計時間 = X</p>
 
-            <body>
+                <body>
         </div>
         <table class="table-calendar" id="calendar" data-lang="ja">
             <thead id="thead-month"></thead>
             <tbody id="calendar-body"></tbody>
         </table>
 
-        <div class="footer-container-calendar">
-            <select id="year" onchange="jump()"></select>
-            <select id="month" onchange="jump()">
-                <option value=0>1月</option>
-                <option value=1>2月</option>
-                <option value=2>3月</option>
-                <option value=3>4月</option>
-                <option value=4>5月</option>
-                <option value=5>6月</option>
-                <option value=6>7月</option>
-                <option value=7>8月</option>
-                <option value=8>9月</option>
-                <option value=9>10月</option>
-                <option value=10>11月</option>
-                <option value=11>12月</option>
-            </select>
-
-            <p type="text" id="modalDateDisplay" ></p>
-
-        </div>
+    
+        
     </div>
 
     <!-- 新しいモーダルの追加 -->
     <div id="numberInputModal" style="display: none;">
+
+        <p type="text" id="modalDateDisplay"></p>
         <label class="m-3" for="numberInput">勤務時間:</label>
-        <input type="number" id="numberInput" >
-        <button class="btn btn-primary" onclick="console.log('hogehoge')">追加</button>
+        <input type="number" id="numberInput">
+        <button class="btn btn-primary" id="workInput">追加</button>
 
         <!-- 新しいコード: 入力された数を表示する領域 -->
         <div id="numbersDisplay"></div>
