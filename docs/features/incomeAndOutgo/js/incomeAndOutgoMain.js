@@ -2,9 +2,6 @@
 // 現在の年月を管理する変数
 var currentYearMonth = new Date();
 
-//----ー扶養欄の働いた金額----ー
-var fuyo_worked ;
-
 //----ー扶養欄の残り金額----ー
 var fuyo_value =1030000;
 
@@ -26,12 +23,16 @@ function changeMonth(direction) {
     // 来月の日付に進める
     currentYearMonth.setMonth(currentYearMonth.getMonth() + 1);
     }
-    const outgoRepository = new OutgoRepository();
-    const outgoMonthAll = outgoRepository.getOutgoMonthAll(year, month);
-    const outgoYearAll = outgoRepository.getOutgoYearAll(year);
-    const shiftRepository = new ShiftRepository();
-    const shiftMonthAll = shiftRepository.getShiftMonthAll(year, month);
-  updateData(); // データを更新
+   // updateData 関数に引数を渡す
+  const year = currentYearMonth.getFullYear();
+  const month = currentYearMonth.getMonth() + 1;
+  const outgoRepository = new OutgoRepository();
+  const outgoyear = outgoRepository.getOutgoList(year);
+  const outgoMonthAll = outgoRepository.getOutgoMonthAll(year, month);
+  const shiftRepository = new ShiftRepository();
+  const shiftMonthAll = shiftRepository.getShiftMonthAll(year, month);
+
+  updateData(outgoMonthAll, outgoyear,shiftMonthAll);
   updateCurrentDate(); // 年月を更新
 }
 
@@ -39,9 +40,9 @@ const jobRepository = new JobRepository();
 const job = jobRepository.getJob();
 const priceValue = job.price;
 // データを更新する関数 (適宜実際のデータ更新処理を追加)
-function updateData() {
+function updateData(outgoMonthAll,outgoyear,shiftMonthAll) {
   // 仮のデータ更新処理
-  var fuyo_worked = outgoYearAll.reduce((sum, item) => sum + item.price, 0);     //扶養欄の働いた金額
+  var fuyo_worked = outgoyear.reduce((sum, item) => sum + item.price, 0);     //扶養欄の働いた金額
   var fuyo_rest = fuyo_value - fuyo_worked;//扶養欄の残った金額
   var in_time = shiftMonthAll.reduce((sum, item) => sum + item.time, 0);  //収入欄の勤務時間
   var in_worked = priceValue * in_time;       //収入欄の働いた金額      
@@ -78,5 +79,5 @@ function getRandomValue() {
 // ページ読み込み時に初期化
 window.onload = function () {
   updateCurrentDate();
-  updateData(); // データを初期表示
+  updateData(); 
 };
