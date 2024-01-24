@@ -12,7 +12,7 @@ class JobSettingMain {
         const job = {
             jobname: 'ファミリーマート',
             // 来月に変更する
-            date: new Date(2021, 3, 15),
+            payday: 15,
             price: 1000,
         };
         

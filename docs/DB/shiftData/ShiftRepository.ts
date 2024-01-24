@@ -57,6 +57,30 @@ class ShiftRepository {
         return shiftMonthAll;
     }   
 
+    getShiftDayAll(
+        year: number,
+        month: number,
+        day: number,
+    ){
+        // DBに保存されている文字列を取得する
+        const db = ShiftApi.getShiftList();
+        // 文字列からオブジェクトに変換をかける
+        const shiftList:ShiftModel[] = JSON.parse(db? db : '[]');
+
+        // 年と月と日にちでフィルターをかけてその月のShiftを全て出力させる
+        const shiftDayAll = shiftList.filter(shift => {
+            const shiftDate = new Date(shift.date);
+            const shiftYear = shiftDate.getFullYear();
+            const shiftMonth = shiftDate.getMonth();
+            const shiftDay = shiftDate.getDate();
+
+            return shiftYear === year && shiftMonth === month && shiftDay === day;
+        });
+
+        // 返す
+        return shiftDayAll;
+    }   
+
     // ================== SET ==================
 
     // Shiftのデータをもらうことで、DBに保存する
