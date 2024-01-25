@@ -4,6 +4,8 @@ var currentYearMonth = new Date();
 
 //----ー扶養欄の残り金額----ー
 var fuyo_value = 1030000;
+var fuyo_accumulated = 0; // 1年間の働いた金額を保持する変数
+
 
 
 // 年月を更新する関数
@@ -48,8 +50,13 @@ function updateData(outgoMonthAll, outgoyear, shiftMonthAll) {
     shiftMonthAll = shiftMonthAll || [];
 
   // データ更新処理
-    var fuyo_worked = outgoyear.reduce((sum, item) => sum + (item.price || 0), 0);     //扶養欄の働いた金額
-    var fuyo_rest = fuyo_value - fuyo_worked;//扶養欄の残った金額
+  var fuyo_worked = outgoyear.reduce((sum, item) => sum + (item.price || 0), 0); //扶養欄の働いた金額
+  
+  // 1年が経過したら、働いた金額をリセット
+  if (currentYearMonth.getMonth() === 11) {
+    fuyo_worked = 0;
+  }
+    var fuyo_rest = fuyo_value - fuyo_worked; // 扶養欄の残った金額
     var in_time = shiftMonthAll.reduce((sum, item) => sum + (item.time || 0), 0);  //収入欄の勤務時間
     var in_worked = 0;
     in_worked = priceValue * in_time;     //収入欄の働いた金額 
