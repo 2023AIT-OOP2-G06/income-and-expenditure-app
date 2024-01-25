@@ -185,6 +185,8 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
       location.reload();
   },);
+
+
   
 
 
@@ -192,4 +194,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   }
+
+
 });
