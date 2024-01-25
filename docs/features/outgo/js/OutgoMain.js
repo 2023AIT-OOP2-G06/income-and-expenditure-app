@@ -38,7 +38,7 @@ class OutgoMain {
         const inputPrice = document.querySelector('#new-price');
         const valDate = inputDate.value;
         const valPrice = inputPrice.value;
-        inputDate.value = '';
+        this.setToday();
         inputPrice.value = '';
 
         try {
@@ -99,6 +99,14 @@ class OutgoMain {
             ulPointer.appendChild(newLi);
         });
     }
+
+    // 日付入力欄に今日の日付を与える
+    setToday(){
+        const inputDate = document.querySelector('#new-date');
+        const today = new Date();
+        const StrToday = today.getFullYear() +'-'+ Number(today.getMonth())+1 +'-'+ today.getDate();
+        inputDate.setAttribute('value', StrToday);
+    }
 }
 
 window.onload = function() {
@@ -106,6 +114,7 @@ window.onload = function() {
     setTimeout(function() {
         const outgoMain = new OutgoMain();
         outgoMain.getOutgo();
+        outgoMain.setToday();
     }, 100);
     
 }
