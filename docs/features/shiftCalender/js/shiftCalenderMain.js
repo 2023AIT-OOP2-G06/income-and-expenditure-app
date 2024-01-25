@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var monthAndYear = document.getElementById("monthAndYear");
 
-  function init() {
+ function init() {
     const shiftRepository = new ShiftRepository();
     const shiftMonthAll = shiftRepository.getShiftMonthAll(currentYear, currentMonth);
 
@@ -180,9 +180,14 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const shiftList = shiftRepository.setShift(shift);
+    
+    //更新
+    setTimeout(function () {
+      location.reload();
+  },);
+  
 
-    console.log(document.getElementById("numberInput").value);
-    console.log(shiftList);
+
 
 
 
