@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var currentMonth = today.getMonth();
   var currentYear = today.getFullYear();
 
-  var selectYear = document.getElementById("year");
-  var selectMonth = document.getElementById("month");
+  var selectYear = 0;
+  var selectMonth = 0;
   var selectDay = 0;
 
   var createYear = generate_year_range(1970, 2200);
@@ -80,6 +80,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var tbl = document.getElementById("calendar-body");
     tbl.innerHTML = "";
 
+    selectMonth = month;
+    selectYear = year;
+
     monthAndYear.innerHTML = year + "年" + months[month];
 
     var date = 1;
@@ -103,7 +106,8 @@ document.addEventListener("DOMContentLoaded", function () {
           cell.className = "date-picker";
           cell.innerHTML = "<span>" + date + "</span>";
           if (shiftData.length > 0) {
-            cell.innerHTML += "<p>" + shiftData[date - 1].shift + "h" + "</p>";
+            console.log(shiftData[date - 1])
+            cell.innerHTML += "<p>" + shiftData[date - 1].time + "h" + "</p>";
           }
 
           if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
@@ -160,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // シフト時間の入力
   document.getElementById("workInput").onclick = function () {
-    const workAmount = document.getElementById("workInput").value;
+    const workAmount = parseInt(document.getElementById("numberInput").value);
     const shiftRepository = new ShiftRepository();
 
     const shift = {
@@ -172,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const shiftList = shiftRepository.setShift(shift);
 
-    console.log(selectYear.value);
+    console.log(document.getElementById("numberInput").value);
     console.log(shiftList);
 
 
