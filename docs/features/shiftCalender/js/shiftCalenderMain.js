@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
     currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
     currentMonth = (currentMonth + 1) % 12;
 
-    const shiftRepository = new ShiftRepository();
+    const shiftRepository = new shiftRepository();
     const shiftMonthAll = shiftRepository.getShiftMonthAll(currentYear, currentMonth);
 
     showCalendar(currentMonth, currentYear, shiftMonthAll);
