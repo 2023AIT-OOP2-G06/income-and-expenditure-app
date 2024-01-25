@@ -4,9 +4,6 @@ var currentYearMonth = new Date();
 
 //----ー扶養欄の残り金額----ー
 var fuyo_value = 1030000;
-var fuyo_accumulated = 0; // 1年間の働いた金額を保持する変数
-
-
 
 // 年月を更新する関数
 function updateCurrentDate() {
@@ -29,7 +26,7 @@ function changeMonth(direction) {
   const year = currentYearMonth.getFullYear();
   const month = currentYearMonth.getMonth() + 1;
   const outgoRepository = new OutgoRepository();
-  const outgoyear = outgoRepository.getOutgoList(year);
+  const outgoyear = outgoRepository.getOutgoYearAll(year);
   const outgoMonthAll = outgoRepository.getOutgoMonthAll(year, month);
   const shiftRepository = new ShiftRepository();
   const shiftMonthAll = shiftRepository.getShiftMonthAll(year, month);
