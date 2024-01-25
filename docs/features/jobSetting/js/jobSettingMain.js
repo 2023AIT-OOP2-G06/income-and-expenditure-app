@@ -42,3 +42,24 @@ class JobSettingMain {
     }
     
 }
+
+window.onload = function() {
+
+    setTimeout(function() {
+        const jobRepository = new JobRepository();
+        const job = jobRepository.getJob();
+        console.log(job);
+
+        let valJobName = job.jobname;
+        if(typeof(job.jobname) === 'undefined'){
+            valJobName = '';
+        }
+
+        const inputname = document.querySelector('#new-name');
+        const inputDate = document.querySelector('#new-date');
+        const inputPrice = document.querySelector('#new-price');
+        inputname.value = valJobName;
+        inputDate.value = job.payday;
+        inputPrice.value = job.price;
+    },100);
+}
