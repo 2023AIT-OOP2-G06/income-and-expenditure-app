@@ -42,8 +42,8 @@ class OutgoMain {
         inputPrice.value = '';
 
         try {
-            // 空欄の判定(Priceが半角数字以外でもここで判定可能)
-            if(valDate == '' || valPrice == ''){
+            // 入力の判定(Priceが半角数字以外でもここで判定可能)
+            if(valDate == '' || valPrice == '' || Number(valPrice) <= 0){
                 throw new Error('入力に誤りがあります');
             }
             // [0]-year,[1]-month,[2]-day
