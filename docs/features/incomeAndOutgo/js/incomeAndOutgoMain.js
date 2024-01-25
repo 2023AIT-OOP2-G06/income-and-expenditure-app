@@ -98,11 +98,6 @@ function updateData(outgoMonthAll, outgoyear, shiftMonthAll) {
   );
 }
 
-// 乱数を生成する関数 (仮のデータ生成用)
-function getRandomValue() {
-  return Math.floor(Math.random() * 1000000);
-}
-
 // ページ読み込み時に初期化
 window.onload = function () {
   updateCurrentDate();
