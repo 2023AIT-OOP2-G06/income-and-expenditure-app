@@ -21,11 +21,21 @@ class ShiftRepository {
 
     // この関数は全てのShiftを取得する
     // @return {ShiftModel[]} ShiftList
-    getShiftList(){
+    getShiftList(
+        sort: number,
+    ){
         // DBに保存されている文字列を取得する
         const db = ShiftApi.getShiftList();
         // 文字列からオブジェクトに変換をかける
         const shiftList:ShiftModel[] = JSON.parse(db? db : '[]');
+        
+        if (sort === 1) {
+            // 昇順
+            shiftList.sort((a, b) => a.id - b.id);
+        } else if (sort === 2) {
+            // 降順
+            shiftList.sort((a, b) => b.id - a.id);
+        }
 
         //そのまま全てを返す
         return shiftList;

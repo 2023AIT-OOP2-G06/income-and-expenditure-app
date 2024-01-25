@@ -21,11 +21,21 @@ class OutgoRepository {
 
     // この関数は全ての支出を取得する
     // @return {OutgoModel[]} outgoList
-    getOutgoList(){
+    getOutgoList(
+        sort: number,
+    ){
         // DBに保存されている文字列を取得する
         const db = OutgoApi.getOutgoList();
         // 文字列からオブジェクトに変換をかける
         const outgoList:OutgoModel[] = JSON.parse(db? db : '[]');
+
+        if (sort === 1) {
+            // 昇順
+            outgoList.sort((a, b) => a.id - b.id);
+        } else if (sort === 2) {
+            // 降順
+            outgoList.sort((a, b) => b.id - a.id);
+        }
 
         //そのまま全てを返す
         return outgoList;
