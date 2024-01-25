@@ -8,10 +8,6 @@ var fuyo_worked = 0;
 //----ー扶養欄の残り金額----ー
 var fuyo_value = 1030000;
 
-const jobRepository = new JobRepository();
-const job = jobRepository.getJob();
-const priceValue = job.price;
-
 
 // 年月を更新する関数
 function updateCurrentDate() {
@@ -46,6 +42,10 @@ function changeMonth(direction) {
 
 // データを更新する関数 (適宜実際のデータ更新処理を追加)
 function updateData(outgoMonthAll, outgoyear, shiftMonthAll) {
+
+  const jobRepository = new JobRepository();
+  const job = jobRepository.getJob();
+  const priceValue = job.price;
 
     outgoyear = outgoyear || [];
     shiftMonthAll = shiftMonthAll || [];
