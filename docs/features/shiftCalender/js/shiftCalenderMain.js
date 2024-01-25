@@ -28,10 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var monthAndYear = document.getElementById("monthAndYear");
 
  function init() {
-    const shiftRepository = new ShiftRepository();
-    const shiftMonthAll = shiftRepository.getShiftMonthAll(currentYear, currentMonth);
-
-    showCalendar(currentMonth, currentYear, shiftMonthAll);
+    showCalendar(currentMonth, currentYear);
   }
   setTimeout(init, 100);
 
@@ -47,10 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
     currentMonth = (currentMonth + 1) % 12;
 
-    const shiftRepository = new shiftRepository();
-    const shiftMonthAll = shiftRepository.getShiftMonthAll(currentYear, currentMonth);
-
-    showCalendar(currentMonth, currentYear, shiftMonthAll);
+    showCalendar(currentMonth, currentYear);
   }
 
   document.getElementById("previous").onclick = function previous() {
@@ -74,6 +68,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     selectMonth = month;
     selectYear = year;
+
+
+    const shiftRepository = new ShiftRepository();
+
+    const shiftMonthAll = shiftRepository.getShiftMonthAll(selectYear, selectMonth);
+    console.log(shiftMonthAll);
+    const workall = document.getElementById("shiftMonthAll");
+    let sumTime = 0;
+    shiftMonthAll.forEach(function(element){
+      console.log(element);
+      sumTime += element.time;
+    });
+    
+
+    workall.textContent = sumTime;
 
     monthAndYear.innerHTML = year + "年" + months[month];
 
