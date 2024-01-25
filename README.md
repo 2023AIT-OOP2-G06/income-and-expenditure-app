@@ -1,4 +1,4 @@
-outgo-and-expenditure-app
+シフマネ（Shift Management）
 ===
 
 # 概要

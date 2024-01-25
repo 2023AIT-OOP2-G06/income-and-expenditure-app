@@ -66,6 +66,11 @@ id毎にデータを取得するためには
 const outgoRepository = new OutgoRepository();
 const outgo = outgoRepository.getOutgo(0);
 ```
+また年ごとに取得するためには
+```js
+const outgoRepository = new OutgoRepository();
+const outgoMonthAll = outgoRepository.getOutgoYearAll(2021);
+```
 
 また月ごとに取得するためには
 ```js

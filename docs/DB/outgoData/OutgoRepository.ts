@@ -31,6 +31,29 @@ class OutgoRepository {
         return outgoList;
     }
 
+    // この関数は年を用いてその条件にあう支出を全て取得する
+    // @param {number} year
+    // @return {OutgoModel[]} outgoMonthAll
+    getOutgoYearAll(
+        year: number,
+    ){
+        // DBに保存されている文字列を取得する
+        const db = OutgoApi.getOutgoList();
+        // 文字列からオブジェクトに変換をかける
+        const outgoList:OutgoModel[] = JSON.parse(db? db : '[]');
+
+        // 年と月でフィルターをかけてその月の支出を全て出力させる
+        const outgoMonthAll = outgoList.filter(outgo => {
+            const outgoDate = new Date(outgo.date);
+            const outgoYear = outgoDate.getFullYear();
+
+            return outgoYear === year;
+        });
+
+        // 返す
+        return outgoMonthAll;
+    }   
+
     // この関数は年と月を用いてその条件にあう支出を全て取得する
     // @param {number} year
     // @param {number} month
