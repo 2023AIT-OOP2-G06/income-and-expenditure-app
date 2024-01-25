@@ -38,13 +38,13 @@ function changeMonth(direction) {
 function updateData(outgoMonthAll, outgoyear, shiftMonthAll) {
   const jobRepository = new JobRepository();
   const job = jobRepository.getJob();
-  const priceValue = job.price;
-
+  let priceValue = job.price;
+  if (typeof (priceValue) === 'undefined') {
+    priceValue = 0;
+  }
   outgoyear = outgoyear || [];
   shiftMonthAll = shiftMonthAll || [];
 
-  // データ更新処理
-  //var fuyo_worked = outgoyear.reduce((sum, item) => sum + (item.price || 0), 0);
   //扶養欄の働いた金額
 
   const year = currentYearMonth.getFullYear();
