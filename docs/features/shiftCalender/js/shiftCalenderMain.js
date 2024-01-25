@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
   function init() {
     const shiftRepository = new ShiftRepository();
     const shiftMonthAll = shiftRepository.getShiftMonthAll(currentYear, currentMonth);
-    console.log(shiftMonthAll);
 
     showCalendar(currentMonth, currentYear, shiftMonthAll);
   }
@@ -44,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return years;
   }
 
-  function next() {
+  document.getElementById("next").onclick = function next() {
     currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
     currentMonth = (currentMonth + 1) % 12;
 
@@ -54,28 +53,21 @@ document.addEventListener("DOMContentLoaded", function () {
     showCalendar(currentMonth, currentYear, shiftMonthAll);
   }
 
-  function previous() {
+  document.getElementById("previous").onclick = function previous() {
     currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
     currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
 
-    const shiftRepository = new ShiftRepository();
-    const shiftMonthAll = shiftRepository.getShiftMonthAll(currentYear, currentMonth);
-    console.log(shiftMonthAll);
-
-    showCalendar(currentMonth, currentYear, shiftMonthAll);
+    showCalendar(currentMonth, currentYear);
   }
 
   function jump() {
     currentYear = parseInt(selectYear.value);
     currentMonth = parseInt(selectMonth.value);
 
-    const shiftRepository = new ShiftRepository();
-    const shiftMonthAll = shiftRepository.getShiftMonthAll(currentYear, currentMonth);
-
-    showCalendar(currentMonth, currentYear, shiftMonthAll);
+    showCalendar(currentMonth, currentYear);
   }
 
-  function showCalendar(month, year, shiftData) {
+  function showCalendar(month, year) {
     var firstDay = (new Date(year, month)).getDay();
     var tbl = document.getElementById("calendar-body");
     tbl.innerHTML = "";
@@ -105,9 +97,22 @@ document.addEventListener("DOMContentLoaded", function () {
           cell.setAttribute("data-month_name", months[month]);
           cell.className = "date-picker";
           cell.innerHTML = "<span>" + date + "</span>";
-          if (shiftData.length > 0) {
-            console.log(shiftData[date - 1])
-            cell.innerHTML += "<p>" + shiftData[date - 1].time + "h" + "</p>";
+
+          // TODO: ShiftRepositoryをインスタンス化する
+          const shiftRepository = new ShiftRepository();
+
+          //　TODO:  DBから年、月、日を用いてデータを取得する
+          // DB_READMEのShiftDBの中の#### 取得を参考にやってみよう
+          // 年と月はselectYear,selectMonthが参考になるよ
+          // Dayはこのfor文をよく読むとどこにかいてあるかわかるかも
+          const shiftDayAll = shiftRepository.getShiftDayAll(selectYear, selectMonth, date);
+          
+          // Next: エラー処理
+          //複数のシフトを登録してしまった場合複数個のでーたが取られてしまう場合があります。その時にどうするか考えてみましょう。
+          
+          // TODO: 表示させる　 shiftData[date - 1].time を取得したものに変えよう
+          if(shiftDayAll.length > 0){
+            cell.innerHTML += "<p>" + shiftDayAll[0].time + "h" + "</p>";
           }
 
           if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
