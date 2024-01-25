@@ -2,9 +2,6 @@
 // 現在の年月を管理する変数
 var currentYearMonth = new Date();
 
-//----ー扶養欄の働いた金額----ー
-var fuyo_worked = 0;
-
 //----ー扶養欄の残り金額----ー
 var fuyo_value = 1030000;
 
@@ -54,12 +51,20 @@ function updateData(outgoMonthAll, outgoyear, shiftMonthAll) {
     var fuyo_worked = outgoyear.reduce((sum, item) => sum + (item.price || 0), 0);     //扶養欄の働いた金額
     var fuyo_rest = fuyo_value - fuyo_worked;//扶養欄の残った金額
     var in_time = shiftMonthAll.reduce((sum, item) => sum + (item.time || 0), 0);  //収入欄の勤務時間
-    var in_worked=0;
-    if (priceValue !== null) {
-        in_worked = priceValue * in_time;       //収入欄の働いた金額    
-    }      
+    var in_worked = 0;
+    in_worked = priceValue * in_time;     //収入欄の働いた金額 
+    if (isNaN(in_worked) == true) {
+    in_worked= 0;
+    }
+
+   
     var total_out = outgoMonthAll.reduce((sum, item) => sum + (item.price || 0), 0); //支出欄の支出の合計
-    var total_bop = in_worked - total_out;   //収支欄の収支の合計
+    var total_bop = in_worked - total_out; //収支欄の収支の合計
+    if (isNaN(total_bop) == true) {
+      total_bop = 0;
+    }
+    
+    
 
 
   // HTMLに反映
