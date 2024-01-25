@@ -38,12 +38,12 @@ class OutgoMain {
         const inputPrice = document.querySelector('#new-price');
         const valDate = inputDate.value;
         const valPrice = inputPrice.value;
-        inputDate.value = '';
+        this.setToday();
         inputPrice.value = '';
 
         try {
-            // 空欄の判定(Priceが半角数字以外でもここで判定可能)
-            if(valDate == '' || valPrice == ''){
+            // 入力の判定(Priceが半角数字以外でもここで判定可能)
+            if(valDate == '' || valPrice == '' || Number(valPrice) <= 0){
                 throw new Error('入力に誤りがあります');
             }
             // [0]-year,[1]-month,[2]-day
@@ -99,6 +99,14 @@ class OutgoMain {
             ulPointer.appendChild(newLi);
         });
     }
+
+    // 日付入力欄に今日の日付を与える
+    setToday(){
+        const inputDate = document.querySelector('#new-date');
+        const today = new Date();
+        const StrToday = today.getFullYear() +'-'+ Number(today.getMonth())+1 +'-'+ today.getDate();
+        inputDate.setAttribute('value', StrToday);
+    }
 }
 
 window.onload = function() {
@@ -106,6 +114,7 @@ window.onload = function() {
     setTimeout(function() {
         const outgoMain = new OutgoMain();
         outgoMain.getOutgo();
+        outgoMain.setToday();
     }, 100);
     
 }
