@@ -47,13 +47,22 @@ function updateData(outgoMonthAll, outgoyear, shiftMonthAll) {
     shiftMonthAll = shiftMonthAll || [];
 
   // データ更新処理
-  var fuyo_worked = outgoyear.reduce((sum, item) => sum + (item.price || 0), 0); //扶養欄の働いた金額
+  //var fuyo_worked = outgoyear.reduce((sum, item) => sum + (item.price || 0), 0);
+  //扶養欄の働いた金額
   
-  // 1年が経過したら、働いた金額をリセット
-  if (currentYearMonth.getMonth() === 11) {
-    fuyo_worked = 0;
+  
+  const year = currentYearMonth.getFullYear();
+  const i = currentYearMonth.getMonth();
+  const yearsum = 0;
+  
+  for (i = 0; i--;){
+    const outgomonth = getOutgoMonthAll(year, i);
+    const monthsum = 0;
+    outgomonth.forEach((element) => monthsum += element.price);
+    yearsum += monthsum;
   }
-    var fuyo_rest = fuyo_value - fuyo_worked; // 扶養欄の残った金額
+
+    var fuyo_rest = fuyo_value - yearsum; // 扶養欄の残った金額
     var in_time = shiftMonthAll.reduce((sum, item) => sum + (item.time || 0), 0);  //収入欄の勤務時間
     var in_worked = 0;
     in_worked = priceValue * in_time;     //収入欄の働いた金額 
@@ -68,12 +77,11 @@ function updateData(outgoMonthAll, outgoyear, shiftMonthAll) {
       total_bop = 0;
     }
     
-    
-
+  
 
   // HTMLに反映
   document.getElementById('fuyo_work_value').innerHTML =
-    '働いた金額 : ' + fuyo_worked.toLocaleString() + '円';
+    '働いた金額 : ' + yearsum.toLocaleString() + '円';
   document.getElementById('fuyo_rest_value').innerHTML =
     '残った金額 : ' + fuyo_rest.toLocaleString() + '円';
   document.getElementById('in_work_value').innerHTML =
