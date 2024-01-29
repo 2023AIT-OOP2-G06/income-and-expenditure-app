@@ -1,23 +1,156 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <!--=============== BOXICONS ===============-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!--=============== BOXICONS ===============-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
 
-        <!--=============== CSS ===============-->
-        <link rel="stylesheet" href="../../core/css/styles.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="../../core/css/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="../../features/incomeAndOutgo/css/incomeAndOutgoStayle.css"
+    />
 
+    <style>
+      /* 追加スタイル */
+      .month-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+    </style>
 
-        <title>収支管理</title>
-    </head>
-    <body>
+    <title>収支管理</title>
+
+    <!-- BootstrapのJSを読み込み -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- JavaScriptファイルのリンク -->
+    <script src="../../features/incomeAndOutgo/js/incomeAndOutgoMain.js"></script>
+
+    <!-- DBファイルのリンク -->
+    <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@latest/babel.min.js"></script>
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/shiftData/ShiftApi.ts"
+    ></script>
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/shiftData/ShiftEntity.ts"
+    ></script>
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/shiftData/ShiftRepository.ts"
+    ></script>
+
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/outgoData/OutgoApi.ts"
+    ></script>
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/outgoData/OutgoEntity.ts"
+    ></script>
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/outgoData/OutgoRepository.ts"
+    ></script>
+
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/jobData/JobApi.ts"
+    ></script>
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/jobData/JobEntity.ts"
+    ></script>
+    <script
+      type="text/babel"
+      data-presets="typescript"
+      src="../../DB/jobData/JobRepository.ts"
+    ></script>
+  </head>
+  <body class="d-flex align-items-center justify-content-center">
+    <div class="container text-center">
+      <!-- ボタンで月を変える -->
+      <div class="month-buttons">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          onclick="changeMonth('previous')"
+        >
+          ←先月
+        </button>
         <h2 class="section__title">収支管理</h2>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          onclick="changeMonth('current')"
+        >
+          来月→
+        </button>
+      </div>
 
-        <!--=============== BootstrapのJS ===============-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    </body>
+      <!-- 年月日を表示 -->
+      <h5 class="mt-4 mb-4"><span id="currentDate"></span></h5>
+
+      <!-- 扶養の金額 -->
+      <div class="mt-4">
+        <h4 class="mb-3">扶養の金額</h4>
+        <section class="bar-graph bar-graph-horizontal bar-graph-one">
+          <div class="bar-one">
+            <div class="bar"></div>
+          </div>
+        </section>
+        <div class="row mt-3">
+          <div class="mt-3">
+            <div id="fuyo_work_value"></div>
+            <div id="fuyo_rest_value"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 今月の収入 -->
+      <div class="mt-4">
+        <div class="mt-3">
+          <h4>今月の収入</h4>
+          <div id="in_work_value"></div>
+          <div id="in_work_time"></div>
+        </div>
+        <div class="mt-3">
+          <h4>今月の支出</h4>
+          <div id="out_value"></div>
+        </div>
+        <div class="mt-3">
+          <h4>今月の収支</h4>
+          <div id="bop_value"></div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
