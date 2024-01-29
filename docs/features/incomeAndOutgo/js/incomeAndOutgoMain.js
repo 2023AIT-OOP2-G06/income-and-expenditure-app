@@ -16,14 +16,14 @@ function updateCurrentDate() {
 function changeMonth(direction) {
   if (direction === "previous") {
     // 先月の日付に戻る
-    currentYearMonth.setMonth(currentYearMonth.getMonth() - 1);
+    currentYearMonth = get_nextmonth_date(currentYearMonth, -1);
   } else if (direction === "current") {
     // 来月の日付に進める
-    currentYearMonth.setMonth(currentYearMonth.getMonth() + 1);
+    currentYearMonth = get_nextmonth_date(currentYearMonth, 1);
   }
   // updateData 関数に引数を渡す
   const year = currentYearMonth.getFullYear();
-  const month = currentYearMonth.getMonth() + 1;
+  const month = currentYearMonth.getMonth();
   const outgoRepository = new OutgoRepository();
   const outgoyear = outgoRepository.getOutgoYearAll(year);
   const outgoMonthAll = outgoRepository.getOutgoMonthAll(year, month);
@@ -105,7 +105,46 @@ function updateData(outgoMonthAll, outgoyear, shiftMonthAll) {
 // ページ読み込み時に初期化
 window.onload = function () {
   setTimeout(function () {
+    
+    // updateData 関数に引数を渡す
+    const year = currentYearMonth.getFullYear();
+    const month = currentYearMonth.getMonth();
+    const outgoRepository = new OutgoRepository();
+    const outgoyear = outgoRepository.getOutgoYearAll(year);
+    const outgoMonthAll = outgoRepository.getOutgoMonthAll(year, month);
+    const shiftRepository = new ShiftRepository();
+    const shiftMonthAll = shiftRepository.getShiftMonthAll(year, month);
+
     updateCurrentDate();
-    updateData([], [], []);
+    updateData(outgoMonthAll, outgoyear, shiftMonthAll);
   }, 300);
 };
+
+/**
+ * 指定した日付からXヶ月後のDateオブジェクトを取得する
+ * @param {object} date   - 基準のDateオブジェクト
+ * @param {number} months - 何ヶ月先の日付を取得するか
+ */
+function get_nextmonth_date(date, months) {
+  // monthsの指定がない場合は翌月を取得
+  var months = months || 1;
+
+  // 基準の年月日を取得
+  var year = date.getFullYear();
+  var month = date.getMonth();
+  var day = date.getDate();
+
+  // 基準の年月からDateオブジェクトを生成
+  var nextDate = new Date(year, month);
+  // 月の設定を変更
+  nextDate.setMonth(nextDate.getMonth() + months);
+  // 末日を取得
+  var lastDay = new Date(nextDate.getFullYear(), nextDate.getMonth() + 1, 0).getDate();
+  // 元の日にちが該当月に無い場合はその月の末日を設定する
+  if(lastDay < day) {
+      nextDate.setDate(lastDay);
+  } else {
+      nextDate.setDate(day);
+  }
+  return nextDate;
+}
