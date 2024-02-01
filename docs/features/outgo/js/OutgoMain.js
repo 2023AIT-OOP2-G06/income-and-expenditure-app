@@ -104,7 +104,16 @@ class OutgoMain {
     setToday(){
         const inputDate = document.querySelector('#new-date');
         const today = new Date();
-        const StrToday = today.getFullYear() +'-'+ Number(today.getMonth())+1 +'-'+ today.getDate();
+        let Month = Number(today.getMonth())+1;
+        if(Number(Month)<10){
+            Month = '0'+ Month;
+        }
+        let Day = today.getDate();
+        if(Number(Day)<10){
+            Day = '0'+ Day;
+        }
+        const StrToday = today.getFullYear() +'-'+ Month +'-'+ Day;
+        console.log(StrToday);
         inputDate.setAttribute('value', StrToday);
     }
 }
